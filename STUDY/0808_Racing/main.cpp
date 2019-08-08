@@ -33,6 +33,13 @@ struct sCharacter
 	int score;
 };
 
+struct sObject
+{
+	float x;
+	float y;
+	float speed;
+};
+
 void Input(sCharacter& user)
 {
 	if (_kbhit())
@@ -71,7 +78,7 @@ void Input(sCharacter& user)
 	}
 }
 
-void Init(sCharacter enemy[], sCharacter& user)
+void Init(sObject enemy[], sCharacter& user)
 {
 	for (int i = 0; i < HEIGHT; i++)
 	{
@@ -92,6 +99,7 @@ void Init(sCharacter enemy[], sCharacter& user)
 	{
 		enemy[i].x = 1 + rand() % (WIDTH - 2);
 		enemy[i].y = (rand() % HEIGHT) - HEIGHT;
+		enemy[i].speed = (rand() % 5)*0.2;
 	}
 	user.x = WIDTH / 2;
 	user.y = HEIGHT - 1;
@@ -100,17 +108,17 @@ void Init(sCharacter enemy[], sCharacter& user)
 }
 
 
-void Update(sCharacter enemy[] , sCharacter& user)
+void Update(sObject enemy[] , sCharacter& user)
 {
 	int temp = 0;
 	for (int i = 0; i < ENEMYNUMS; i++)
 	{
 		temp = enemy[i].y;
-		enemy[i].y++;
+		enemy[i].y += enemy[i].speed;;
 		if (enemy[i].y >= 0)
 		{
-			maps[enemy[i].y][enemy[i].x] = ENEMY;
-			maps[temp][enemy[i].x] = EMPTY;
+			maps[(int)enemy[i].y][(int)enemy[i].x] = ENEMY;
+			maps[temp][(int)enemy[i].x] = EMPTY;
 		}
 		if (enemy[i].y > HEIGHT)
 		{
@@ -118,7 +126,7 @@ void Update(sCharacter enemy[] , sCharacter& user)
 			enemy[i].x = 1 + rand() % (WIDTH -2);
 			user.score += 100;
 		}
-		if (user.x == enemy[i].x && user.y == enemy[i].y)
+		if (user.x == (int)enemy[i].x && user.y == (int)enemy[i].y)
 		{
 			ING = false;
 
@@ -168,7 +176,7 @@ int main()
 	srand(time(nullptr));
 
 	sCharacter user_1;
-	sCharacter enemy[ENEMYNUMS];
+	sObject enemy[ENEMYNUMS];
 
 	Init(enemy, user_1);
 	while (ING)
