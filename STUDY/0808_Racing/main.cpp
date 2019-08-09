@@ -6,10 +6,10 @@
 using namespace std;
 
 
-#define FPS 30.0f
+#define FPS 60.0f
 #define HEIGHT 25
 #define WIDTH 15
-#define ENEMYNUMS 10
+#define ENEMYNUMS 15
 
 bool ING = true;
 
@@ -44,7 +44,7 @@ void Input(sCharacter& user)
 {
 	if (_kbhit())
 	{
-		char input = getch();
+		char input = _getch();
 		int tem_x = 0;
 
 		switch (input)
@@ -99,7 +99,7 @@ void Init(sObject enemy[], sCharacter& user)
 	{
 		enemy[i].x = 1 + rand() % (WIDTH - 2);
 		enemy[i].y = (rand() % HEIGHT) - HEIGHT;
-		enemy[i].speed = (rand() % 5)*0.2;
+		enemy[i].speed = ((rand() % 6) +1)*0.2f;
 	}
 	user.x = WIDTH / 2;
 	user.y = HEIGHT - 1;
@@ -117,8 +117,8 @@ void Update(sObject enemy[] , sCharacter& user)
 		enemy[i].y += enemy[i].speed;;
 		if (enemy[i].y >= 0)
 		{
-			maps[(int)enemy[i].y][(int)enemy[i].x] = ENEMY;
 			maps[temp][(int)enemy[i].x] = EMPTY;
+			maps[(int)enemy[i].y][(int)enemy[i].x] = ENEMY;
 		}
 		if (enemy[i].y > HEIGHT)
 		{
@@ -167,7 +167,7 @@ void Draw()
 
 void Release()
 {
-	cout << "======= G A M E = O V E R ======" << endl;
+	cout << "\n\n======= G A M E = O V E R ======" << endl;
 }
 
 

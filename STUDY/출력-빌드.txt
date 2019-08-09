@@ -1,0 +1,6 @@
+﻿1>------ 빌드 시작: 프로젝트: 0809_Baseball_Game, 구성: Debug Win32 ------
+1>Baseball_main.cpp
+1>c:\users\administrator\desktop\myhans\study_cpp\study\0809_baseball_game\baseball_main.cpp(9): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+1>0809_Baseball_Game.vcxproj -> C:\Users\Administrator\Desktop\MYHANS\Study_Cpp\STUDY\Debug\0809_Baseball_Game.exe
+1>"0809_Baseball_Game.vcxproj" 프로젝트를 빌드했습니다.
+========== 빌드: 성공 1, 실패 0, 최신 0, 생략 0 ==========
