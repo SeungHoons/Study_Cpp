@@ -22,7 +22,7 @@ int main()
 
 
 	char tempChar;
-	while ( (tempChar=fgetc(ps))!='\n')
+	while ((tempChar = fgetc(ps)) != '\n')
 	{
 		if (tempChar == ',')
 			count_num++;
@@ -42,9 +42,9 @@ int main()
 	FILE* outPs = fopen("Homework.h", "w");
 	fprintf(outPs, "struct Homework\n{\n");
 
-	int i_name=0;
-	int i_datatype=0;
-	int i_coment=0;
+	int i_name = 0;
+	int i_datatype = 0;
+	int i_coment = 0;
 
 	for (int i = 0; i <= count_num; i++)
 	{
@@ -53,12 +53,17 @@ int main()
 		while (data_type[i_datatype] != ',')
 		{
 			fprintf(outPs, "%c", data_type[i_datatype++]);
+			if (i_datatype >= data_type.size())
+				break;
 		}
 
 		fprintf(outPs, " ");
 		while (variable_name[i_name] != ',')
 		{
 			fprintf(outPs, "%c", variable_name[i_name++]);
+			if (i_name >= variable_name.size())
+				break;
+
 		}
 
 		fprintf(outPs, ";//");
@@ -66,6 +71,9 @@ int main()
 		while (comment[i_coment] != ',')
 		{
 			fprintf(outPs, "%c", comment[i_coment++]);
+			if (i_coment >= comment.size())
+				break;
+
 		}
 		fprintf(outPs, "\n");
 
