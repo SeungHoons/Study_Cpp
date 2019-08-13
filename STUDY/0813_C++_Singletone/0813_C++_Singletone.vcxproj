@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{F360D0F9-2176-4CC2-87F9-133B5078169F}</ProjectGuid>
+    <ProjectGuid>{8E06D9B6-53FE-4D76-84B9-966BAA44AF0C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My0812CSNAKE</RootNamespace>
+    <RootNamespace>My0813CSingletone</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,13 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MAP.cpp" />
-    <ClCompile Include="SNAKE.cpp" />
-    <ClCompile Include="SNAKE_Main.cpp" />
+    <ClCompile Include="0813_Singletone_main.cpp" />
+    <ClCompile Include="SingleTone.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MAP.h" />
-    <ClInclude Include="SNAKE.h" />
+    <ClInclude Include="SingleTone.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

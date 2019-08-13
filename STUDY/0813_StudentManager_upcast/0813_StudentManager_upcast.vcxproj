@@ -20,10 +20,11 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{F360D0F9-2176-4CC2-87F9-133B5078169F}</ProjectGuid>
+    <ProjectGuid>{95514BCC-F2C4-42FB-BEEB-8C8FBA173EB4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My0812CSNAKE</RootNamespace>
+    <RootNamespace>My0813StudentManagerupcast</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <ProjectName>0813_C++_StudentManager_upcast</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -139,13 +140,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MAP.cpp" />
-    <ClCompile Include="SNAKE.cpp" />
-    <ClCompile Include="SNAKE_Main.cpp" />
+    <ClCompile Include="0813_StudentManager_upcast.cpp" />
+    <ClCompile Include="Science.cpp" />
+    <ClCompile Include="Social.cpp" />
+    <ClCompile Include="Student.cpp" />
+    <ClCompile Include="StudentManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MAP.h" />
-    <ClInclude Include="SNAKE.h" />
+    <ClInclude Include="Science.h" />
+    <ClInclude Include="Social.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="StudentManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

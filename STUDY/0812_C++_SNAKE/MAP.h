@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <time.h>
 using namespace std;
 
 #define HEIGHT 20
@@ -17,7 +18,7 @@ class MAP
 {
 private:
 	E_MAP map[HEIGHT][WIDTH];
-
+	int itemNum;
 
 public:
 	MAP();
@@ -25,6 +26,12 @@ public:
 
 	void Init();
 	void DrawMap();
+	void RandomItem();
+	
+	void addItem()
+	{
+		itemNum++;
+	}
 
 	inline void SetPlayer(int x, int y)
 	{

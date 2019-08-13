@@ -20,10 +20,11 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{F360D0F9-2176-4CC2-87F9-133B5078169F}</ProjectGuid>
+    <ProjectGuid>{68659D92-990F-455F-A1C5-8D6DAACEE921}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My0812CSNAKE</RootNamespace>
+    <RootNamespace>CPP</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <ProjectName>ex_StudentManager</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -139,13 +140,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MAP.cpp" />
-    <ClCompile Include="SNAKE.cpp" />
-    <ClCompile Include="SNAKE_Main.cpp" />
+    <ClCompile Include="CPPMain.cpp" />
+    <ClCompile Include="Student.cpp" />
+    <ClCompile Include="StudentManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MAP.h" />
-    <ClInclude Include="SNAKE.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="StudentManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

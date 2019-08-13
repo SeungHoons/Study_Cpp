@@ -15,6 +15,7 @@ void SNAKE::Init(MAP* _map)
 {
 	Snake.front().x = WIDTH / 2;
 	Snake.front().y = HEIGHT / 2;
+	Score = 0;
 	pMap = _map;
 	pMap->SetPlayer(Snake.front().x, Snake.front().y);
 }
@@ -50,7 +51,7 @@ void SNAKE::Input()
 	}
 }
 
-void SNAKE::Move()
+bool SNAKE::Move()
 {
 	BODY temp;
 	temp = Snake.back();
@@ -67,8 +68,14 @@ void SNAKE::Move()
 			if (pMap->isWhatObject(Snake.front().x + 1, Snake.front().y) == ITEM)
 			{
 				Snake.push_back(Snake.back());
+				Score += 100;
+				pMap->addItem();
 			}
 			Snake.front().x++;
+		}
+		else
+		{
+			return 1;
 		}
 		break;
 	case LEFT:
@@ -78,8 +85,14 @@ void SNAKE::Move()
 			if (pMap->isWhatObject(Snake.front().x - 1, Snake.front().y) == ITEM)
 			{
 				Snake.push_back(Snake.back());
+				Score += 100;
+				pMap->addItem();
 			}
 			Snake.front().x--;
+		}
+		else
+		{
+			return 1;
 		}
 		break;
 
@@ -90,8 +103,14 @@ void SNAKE::Move()
 			if (pMap->isWhatObject(Snake.front().x , Snake.front().y + 1) == ITEM)
 			{
 				Snake.push_back(Snake.back());
+				Score += 100;
+				pMap->addItem();
 			}
 			Snake.front().y++;
+		}
+		else
+		{
+			return 1;
 		}
 		break;
 
@@ -102,8 +121,14 @@ void SNAKE::Move()
 			if (pMap->isWhatObject(Snake.front().x, Snake.front().y-1 ) == ITEM)
 			{
 				Snake.push_back(Snake.back());
+				Score += 100;
+				pMap->addItem();
 			}
 			Snake.front().y--;
+		}
+		else
+		{
+			return 1;
 		}
 		break;
 
@@ -119,5 +144,5 @@ void SNAKE::Move()
 	
 	pMap->SetEmpty(temp.x, temp.y);
 	
-
+	return 0;
 }

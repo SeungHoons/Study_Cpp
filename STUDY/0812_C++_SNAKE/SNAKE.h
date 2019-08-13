@@ -14,13 +14,19 @@ private:
 	vector<BODY> Snake;
 	MAP *pMap;
 	STATE State;
+	int Score;
 public:
 	SNAKE();
 	~SNAKE();
 
 	void Init(MAP* _map);
 	void Input();
-	void Move();
+	bool Move();
+	
+	inline int getScore()
+	{
+		return Score;
+	}
 
 };
 

@@ -8,7 +8,6 @@ int main()
 {
 	MAP map;
 	SNAKE snake;
-	srand((unsigned int)time(nullptr));
 
 
 	map.Init();
@@ -18,9 +17,16 @@ int main()
 	while (true)
 	{
 		snake.Input();
-		snake.Move();
+		if (snake.Move())
+			break;
+
 		map.DrawMap();
-		_sleep(1000 / FPS);
+		cout<< "======Score : " << snake.getScore() << "\n";
+		//_sleep(1000 / FPS);
 	}
+
+	cout << "\n ======Game Over";
+
+	getch();
 	return 0;
 }
