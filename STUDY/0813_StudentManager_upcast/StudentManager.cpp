@@ -61,8 +61,8 @@ void StudentManager::InputStudent()
 	{
 		pNew = new Science();
 		Science* science = dynamic_cast<Science*>(pNew);
-		science->InputLine();
-		pNew->InputLine();
+		//science->InputLine();
+		pNew->InputLine(st.size());
 	}
 	else if (subject == 2)
 	{

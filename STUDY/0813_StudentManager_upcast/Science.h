@@ -10,6 +10,6 @@ public:
 	virtual ~Science();
 
 	virtual void PrintLine();
-	virtual void InputLine();
+	virtual void InputLine(const int iCurStudent);
 };
 

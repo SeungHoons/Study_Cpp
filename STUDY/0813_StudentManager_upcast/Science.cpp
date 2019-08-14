@@ -22,7 +22,7 @@ void Science::PrintLine()
 		fSum << "\t" << fAvg << endl;
 }
 
-void Science::InputLine()
+void Science::InputLine(const int iCurStudent)
 {
 	Student::InputLine(no);
 	cout << "¼öÇÐ2" << endl;
