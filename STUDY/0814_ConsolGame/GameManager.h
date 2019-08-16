@@ -32,6 +32,7 @@ public:
 
 	//Ä³¸¯ÅÍ
 	STATE getScene();
+	Player* getPlayer();
 
 	void printMenu();
 	void inputMenu();

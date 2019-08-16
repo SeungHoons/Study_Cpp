@@ -48,6 +48,11 @@ STATE GameManager::getScene()
 	return player->getScene();
 }
 
+Player * GameManager::getPlayer()
+{
+	return player;
+}
+
 void GameManager::printMenu()
 {
 	for (int i = 0; i < TITLE_SIZE_XY; i++)
@@ -104,6 +109,7 @@ void GameManager::inputMenu()
 		break;
 	case 4: 
 		player->setScene(MAP_MAKE);
+
 		break;
 	default:
 		break;

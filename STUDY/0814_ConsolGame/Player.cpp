@@ -20,3 +20,15 @@ STATE Player::getScene()
 {
 	return sceneState;
 }
+
+void Player::input()
+{
+	
+
+	
+
+}
+
+void Player::move()
+{
+}

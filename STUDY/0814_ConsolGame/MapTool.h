@@ -1,26 +1,32 @@
 #pragma once
-#include<iostream>
+#include "Global.h"
+#include <vector>
 
 using namespace std;
 
-enum BLOCK
-{
-
-};
 
 class Map;
+class Player;
 class MapTool
 {
 private:
-	Map ** map;
-	int input;
+	vector<Map*> vecMap;
+	POINT point;
+	int currentMap;
 public:
 	MapTool();
 	~MapTool();
 
-	void printMenu();
-	void toolMenu();
+	//¸Þ´º
+	void mainMenu();
+	int toolMain();
+	void newMap();
+	void loadMap();
 	void save();
-	void exit();
+
+	//¸Ê
+	void addMap(int _height, int _width);
+
+
 };
 

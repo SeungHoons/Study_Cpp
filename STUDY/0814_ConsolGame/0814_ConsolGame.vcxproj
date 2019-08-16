@@ -144,15 +144,14 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapTool.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Global.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapTool.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerControl.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="게임 컨셉.txt" />
