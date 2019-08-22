@@ -12,14 +12,24 @@ People::~People()
 {
 }
 
-void People::setDestination()
+void People::setDestination(int _floor)
 {
-	while (true)
+	floor = _floor;
+	
+	if (floor == 0)
 	{
-		destination = rand() % MAX_FLOOR;
-		if (floor == destination)
-			continue;
+		while (true)
+		{
+			destination = rand() % MAX_FLOOR;
+			if (floor == destination)
+				continue;
 
-		break;
+			break;
+		}
 	}
+	else
+	{
+		destination = 0;
+	}
+
 }

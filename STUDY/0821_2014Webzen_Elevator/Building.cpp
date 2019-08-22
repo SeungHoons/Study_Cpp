@@ -33,7 +33,6 @@ void Building::setMode()
 
 void Building::addPeople()
 {
-	
 	pFloor[cursor].addPeople();
 }
 
@@ -42,6 +41,20 @@ void Building::randomPeople()
 	int random = rand() % MAX_FLOOR;
 
 	pFloor[random].addPeople();
+}
+
+void Building::update()
+{
+	pElevatorManager->update();
+	for (int i = 0; i < MAX_FLOOR; i++)
+	{
+		pFloor[i].update();
+	}
+}
+
+void Building::search()
+{
+
 }
 
 void Building::print()

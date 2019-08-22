@@ -64,3 +64,8 @@ void Elevator::setType(ELEVATOR_TYPE _type)
 {
 	type = _type;
 }
+
+void Elevator::inElevator(People & _pPeople)
+{
+	inPeople.push_back(_pPeople);
+}

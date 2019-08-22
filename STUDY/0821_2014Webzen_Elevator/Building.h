@@ -13,6 +13,7 @@ public:
 	Building();
 	~Building();
 
+	//UI
 	void setMode();
 	void cursorUp() { cursor++; }
 	void cursorDown() { cursor--; }
@@ -20,6 +21,8 @@ public:
 	void addPeople();
 	void randomPeople();
 	
+	void update();
+	void search();
 	void print();
 };
 

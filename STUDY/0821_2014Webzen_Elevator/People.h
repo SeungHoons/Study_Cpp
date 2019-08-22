@@ -12,6 +12,7 @@ public:
 	People();
 	~People();
 
-	void setDestination();
+	void setDestination(int _floor);
+	int getDestination() { return destination; }
 };
 
