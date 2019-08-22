@@ -1,23 +1,57 @@
 #include <iostream>
-
+#include <time.h>
+#include <conio.h>
+#include "Building.h"
 using namespace std;
+Building building;
+
+
+void print()
+{
+	system("cls");
+	building.print();
+}
+void input()
+{
+	if (kbhit)
+	{
+		char input;
+		input = getch();
+		switch (input)
+		{
+		case 'w':
+			building.cursorUp();
+			break;
+		case 's':
+			building.cursorDown();
+			break;
+		case 'z':
+			building.addPeople();
+			break;
+
+		default:
+			break;
+		}
+	}
+}
+void update()
+{
+}
 
 int main()
 {
+	srand(time(nullptr));
 
-	int input;
-	cout << "\n\n\n\n\n\n 모드를 선택하세요. \n1. 자동\n2. 수동";
-	cin >> input;
+	building.setMode();
+	print();
 
 	while (true)
 	{
-		if (input == 1)
-		{
-		}
-		else
-		{
+		input();
+		print();
+		update();
 
-		}
+		_sleep(1000 / 60);
 	}
 
 	return 0;

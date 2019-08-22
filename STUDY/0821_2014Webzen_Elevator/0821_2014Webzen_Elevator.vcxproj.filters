@@ -24,9 +24,6 @@
     <ClCompile Include="Elevator.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ElevatorManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -42,9 +39,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Elevator.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ElevatorManager.h">

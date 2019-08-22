@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{487F6337-E0F6-4234-A030-502CBC094C2F}</ProjectGuid>
+    <ProjectGuid>{B0241546-2F63-4CCE-8776-CF9A0A8A1C47}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My08212014WebzenElevator</RootNamespace>
+    <RootNamespace>My0822STLAlgorithm</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,23 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Building.cpp" />
-    <ClCompile Include="Elevator.cpp" />
-    <ClCompile Include="ElevatorManager.cpp" />
-    <ClCompile Include="Floor.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="People.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Building.h" />
-    <ClInclude Include="Elevator.h" />
-    <ClInclude Include="ElevatorManager.h" />
-    <ClInclude Include="Floor.h" />
-    <ClInclude Include="Global.h" />
-    <ClInclude Include="People.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="과제 내용.txt" />
+    <ClCompile Include="0822_algorithm_main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
