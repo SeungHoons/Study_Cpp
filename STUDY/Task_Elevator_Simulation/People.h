@@ -1,9 +1,9 @@
 #pragma once
-
-#include"Global.h"
+#include "Global.h"
 
 class People
 {
+private:
 	int count;			//몇 번 기다렸는지.
 	int weight;			//무게
 	int destination;	//목적지

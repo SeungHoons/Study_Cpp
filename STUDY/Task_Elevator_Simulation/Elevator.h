@@ -6,20 +6,19 @@
 class People;
 class Elevator
 {
+private:
 	int floor;
 	int peopleNum;
 	int weight;
 	int target;
 	STATE state;
 	ELEVATOR_TYPE type;
-	deque<People*> inPeople;
-
+	map<int, People*> peopleInElevator;
 public:
 	Elevator();
 	~Elevator();
 
 	void print();
-	void update();
 	void move();
 	void inElevator(People *_pPeople);
 	void arrival();

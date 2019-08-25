@@ -2,6 +2,7 @@
 #include "Global.h"
 
 class People;
+class Elevator;
 class Floor
 {
 	int floorNum;
@@ -22,6 +23,8 @@ public:
 
 	void addPeople();
 	int getPeopleNum();
+	People* relayPeople();
 	Button* getButton() { return &button; }
+	void checkPeople(Elevator* _pElevator);
 };
 

@@ -11,12 +11,13 @@ void print()
 	system("cls");
 	building.print();
 }
+
 void input()
 {
-	if (kbhit)
+	if (kbhit())
 	{
 		char input;
-		input = getch();
+		input = _getch();
 		switch (input)
 		{
 		case 'w':
@@ -52,7 +53,7 @@ int main()
 		print();
 		update();
 
-		_sleep(1000 / 60);
+		_sleep(1000 / 5);
 	}
 
 	return 0;

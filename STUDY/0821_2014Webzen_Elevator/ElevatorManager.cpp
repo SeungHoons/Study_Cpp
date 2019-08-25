@@ -1,6 +1,6 @@
 #include "ElevatorManager.h"
 #include "Elevator.h"
-
+#include "Floor.h"
 
 
 ElevatorManager::ElevatorManager()
@@ -135,10 +135,18 @@ void ElevatorManager::serchElevator()
 {
 }
 
-void ElevatorManager::arrival()
+void ElevatorManager::whareElevator(int index, Floor& _pFloor)
 {
 	for (int i = 0; i < MAX_ELEVATOR; i++)
 	{
-		pElevator[i].
+		if (pElevator[i].getFloor() == index)
+		{
+			_pFloor.checkPeople(&pElevator[i]);
+		}
 	}
+}
+
+void ElevatorManager::floorToElevator(Floor* _pFloor)
+{
+	_pFloor->relayPeople();
 }

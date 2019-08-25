@@ -139,7 +139,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Building.cpp" />
+    <ClCompile Include="Elevator.cpp" />
+    <ClCompile Include="ElevatorManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="People.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Building.h" />
+    <ClInclude Include="Elevator.h" />
+    <ClInclude Include="ElevatorManager.h" />
+    <ClInclude Include="Global.h" />
+    <ClInclude Include="People.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

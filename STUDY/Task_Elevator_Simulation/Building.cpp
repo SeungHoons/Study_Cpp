@@ -1,18 +1,11 @@
 #include "Building.h"
-#include "Floor.h"
 #include "ElevatorManager.h"
 #include "Elevator.h"
-
-
+#include "People.h"
 
 Building::Building()
 {
 	pElevatorManager = new ElevatorManager();
-	pFloor = new Floor[MAX_FLOOR];
-	for (int i = 0; i < MAX_FLOOR; i++)
-	{
-		pFloor[i].init(i);
-	}
 	cursor = 0;
 }
 
@@ -29,65 +22,50 @@ void Building::setMode()
 	autoMode = input - 1;
 }
 
-
-
 void Building::addPeople()
 {
-	pFloor[cursor].addPeople();
-	callElevator();
+	People* nP;
+	nP = new People();
+	nP->setDestination(cursor);
+
+	floor[cursor].waitPeople.insert(pair<int, People*>(nP->getDestination(), nP));
+	floor[cursor].button = 
+	//pFloor[cursor].addPeople();
+	//callElevator();
 }
 
 void Building::randomPeople()
 {
 	int random = rand() % MAX_FLOOR;
 
-	pFloor[random].addPeople();
-	callElevator();
+	//pFloor[random].addPeople();
+	//callElevator();
+}
+
+void Building::init()
+{
+	for (int i = 0; i < MAX_FLOOR; i++)
+	{
+		floor[i].button.call = false;
+		floor[i].button.upButton = false;
+		floor[i].button.downButton = false;
+	}
 }
 
 void Building::update()
 {
 	pElevatorManager->update();
-	//for (int i = 0; i < MAX_FLOOR; i++)
-	//{
-	//	pFloor[i].update();
-	//}
-	equelFloorEelevator();
 }
-
-void Building::callElevator()
-{
-	for (int i = 0; i < MAX_FLOOR; i++)
-	{
-		if (pFloor[i].getButton()->call == true)
-		{
-			pElevatorManager->call(i, pFloor[i].getButton());
-		}
-	}
-}
-
-void Building::equelFloorEelevator()
-{
-	for (int i = 0; i < MAX_FLOOR; i++)
-	{
-		if (pFloor[i].getPeopleNum() > 0)
-		{
-			pElevatorManager->whareElevator(i, pFloor[i]);
-		}
-	}
-}
-
-
 
 void Building::print()
 {
 	//壱帖奄
 	Elevator *tempEelevator = pElevatorManager->getPointer();
 
-	for (int i = MAX_FLOOR -1; i > -1; i--)
+	for (int i = MAX_FLOOR - 1; i > -1; i--)
 	{
 		cout << "けけけけけけけけけけけけ ";
-		cout << pFloor[i].getPeopleNum()<<" ";
+		cout << floor[i].waitPeople.size() << " ";
 		for (int j = 0; j < MAX_ELEVATOR; j++)
 		{
 			if ((tempEelevator[j].getFloor()) == i)
@@ -124,3 +102,29 @@ void Building::print()
 }
 
 
+void Building::callElevator()
+{
+	for (int i = 0; i < MAX_FLOOR; i++)
+	{
+		if (floor[i].button.downButton || floor[i].button.upButton)
+		{
+			//pElevatorManager
+		}
+	}
+}
+
+void Building::changeButton(int index)
+{
+	for (auto iter = floor[index].waitPeople.begin(); iter != floor[index].waitPeople.end(); iter++)
+	{
+		if ((*iter).second->getDiarecton() == DOWN)
+		{
+			floor[index].button.downButton = true;
+		}
+		else if ((*iter).second->getDiarecton() == UP)
+		{
+			floor[index].button.upButton = true;
+		}
+	}
+	
+}

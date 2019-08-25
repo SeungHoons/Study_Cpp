@@ -1,13 +1,20 @@
 #pragma once
-#include"Global.h"
+#include "Global.h"
 
+class People;
 class ElevatorManager;
-class Floor;
+struct Floor
+{
+	map<int, People*> waitPeople;
+	Button button;
+};
+
 class Building
 {
+private:
+	Floor floor[MAX_FLOOR];
 	bool autoMode;
 	ElevatorManager *pElevatorManager;
-	Floor *pFloor;
 	int cursor;
 public:
 	Building();
@@ -20,10 +27,12 @@ public:
 
 	void addPeople();
 	void randomPeople();
-	
+
+	void init();
 	void update();
 	void print();
+
 	void callElevator();
-	void equelFloorEelevator();
+	void changeButton(int index);
 };
 

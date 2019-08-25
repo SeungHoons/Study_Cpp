@@ -15,6 +15,8 @@ Elevator::~Elevator()
 {
 }
 
+
+
 void Elevator::print()
 {
 
@@ -38,10 +40,6 @@ void Elevator::print()
 
 }
 
-void Elevator::update()
-{
-}
-
 void Elevator::move()
 {
 	switch (state)
@@ -60,10 +58,11 @@ void Elevator::move()
 
 	arrival();
 
-	for (int i = 0; i < inPeople.size(); i++)
+	/*for (int i = 0; i < peopleInElevator.size(); i++)
 	{
-		inPeople[i]->countUp();
-	}
+		peopleInElevator[i].second->countUp();
+	}*/
+	//나중에 카운트 샐때
 }
 
 void Elevator::setState(STATE _state)
@@ -78,8 +77,8 @@ void Elevator::setType(ELEVATOR_TYPE _type)
 
 void Elevator::inElevator(People * _pPeople)
 {
-	inPeople.push_back(_pPeople);
-	peopleNum = inPeople.size();
+	//peopleInElevator.insert(pair<int, People*>(_pPeople->getDestination(), _pPeople));
+	//peopleNum = peopleInElevator.size();
 }
 
 void Elevator::arrival()
@@ -92,8 +91,8 @@ void Elevator::arrival()
 
 void Elevator::targetUpdate()
 {
-	
-	for (auto iter = inPeople.begin(); iter != inPeople.end(); iter++)
+
+	for (auto iter = peopleInElevator.begin(); iter != peopleInElevator.end(); iter++)
 	{
 		//if()
 

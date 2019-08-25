@@ -1,5 +1,6 @@
 #include "Floor.h"
 #include "People.h"
+#include "Elevator.h"
 
 
 
@@ -55,4 +56,28 @@ void Floor::addPeople()
 int Floor::getPeopleNum()
 {
 	return waitPeople.size();
+}
+
+People * Floor::relayPeople()
+{
+	//waitPeople.
+	return waitPeople[1];
+}
+
+void Floor::checkPeople(Elevator * _pElevator)
+{
+	vector< deque<People*>::iterator>  temp;
+	for (auto iter = waitPeople.begin(); iter != waitPeople.end(); iter++)
+	{
+		if ((*iter)->getDiarecton() == _pElevator->getState())
+		{
+			_pElevator->inElevator(*iter);
+			temp.push_back(iter);
+		}
+	}
+
+	for (int i = temp.size(); i >= 0; i--)
+	{
+		waitPeople.erase(temp[i]);
+	}
 }

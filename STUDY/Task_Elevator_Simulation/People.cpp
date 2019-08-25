@@ -13,6 +13,8 @@ People::~People()
 {
 }
 
+
+
 void People::setDestination(int _floor)
 {
 	floor = _floor;
