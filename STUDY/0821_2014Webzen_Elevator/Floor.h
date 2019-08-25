@@ -6,8 +6,7 @@ class Floor
 {
 	int floorNum;
 	deque<People*> waitPeople;
-	bool upButton;
-	bool downButton;
+	Button button;
 
 public:
 	Floor();
@@ -19,8 +18,10 @@ public:
 	//void setUpbutton() { upButton = true; }
 	//void setDownbutton() { downButton = true; }
 	void update();
+	void checkButton();
 
 	void addPeople();
 	int getPeopleNum();
+	Button* getButton() { return &button; }
 };
 

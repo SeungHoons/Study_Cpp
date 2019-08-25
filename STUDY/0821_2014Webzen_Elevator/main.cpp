@@ -36,6 +36,7 @@ void input()
 }
 void update()
 {
+	building.update();
 }
 
 int main()

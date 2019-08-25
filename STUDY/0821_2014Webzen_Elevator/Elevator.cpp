@@ -1,5 +1,5 @@
 #include "Elevator.h"
-
+#include "People.h"
 
 
 Elevator::Elevator()
@@ -38,9 +38,9 @@ void Elevator::print()
 
 }
 
-void Elevator::move(STATE _state)
+void Elevator::move()
 {
-	switch (_state)
+	switch (state)
 	{
 	case UP:
 		floor++;
@@ -52,6 +52,11 @@ void Elevator::move(STATE _state)
 		break;
 	default:
 		break;
+	}
+
+	for (int i = 0; i < inPeople.size(); i++)
+	{
+		inPeople[i]->countUp();
 	}
 }
 
@@ -65,7 +70,7 @@ void Elevator::setType(ELEVATOR_TYPE _type)
 	type = _type;
 }
 
-void Elevator::inElevator(People & _pPeople)
+void Elevator::inElevator(People * _pPeople)
 {
 	inPeople.push_back(_pPeople);
 }

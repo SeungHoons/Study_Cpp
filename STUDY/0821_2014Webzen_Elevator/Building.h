@@ -22,7 +22,7 @@ public:
 	void randomPeople();
 	
 	void update();
-	void search();
+	void callElevator();
 	void print();
 };
 

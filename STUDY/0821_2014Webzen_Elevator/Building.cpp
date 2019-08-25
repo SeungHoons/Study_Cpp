@@ -11,7 +11,7 @@ Building::Building()
 	pFloor = new Floor[MAX_FLOOR];
 	for (int i = 0; i < MAX_FLOOR; i++)
 	{
-		pFloor->init(i + 1);
+		pFloor[i].init(i);
 	}
 	cursor = 0;
 }
@@ -34,6 +34,7 @@ void Building::setMode()
 void Building::addPeople()
 {
 	pFloor[cursor].addPeople();
+	callElevator();
 }
 
 void Building::randomPeople()
@@ -52,9 +53,15 @@ void Building::update()
 	}
 }
 
-void Building::search()
+void Building::callElevator()
 {
-
+	for (int i = 0; i < MAX_FLOOR; i++)
+	{
+		if (pFloor[i].getButton()->call == true)
+		{
+			pElevatorManager->call(i, pFloor[i].getButton());
+		}
+	}
 }
 
 void Building::print()
@@ -72,16 +79,16 @@ void Building::print()
 				switch (j)
 				{
 				case 0:
-					cout << "ич";
+					cout << "ич  ";
 					break;
 				case 1:
-					cout << "иш";
+					cout << "иш  ";
 					break;
 				case 2:
-					cout << "ищ";
+					cout << "ищ  ";
 					break;
 				case 3:
-					cout << "иъ";
+					cout << "иъ  ";
 					break;
 				default:
 					break;
@@ -89,7 +96,7 @@ void Building::print()
 			}
 			else
 			{
-				cout << "  ";
+				cout << "    ";
 			}
 		}
 		if (i == cursor)

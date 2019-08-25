@@ -5,8 +5,8 @@
 
 Floor::Floor()
 {
-	upButton = false;
-	downButton = false;
+	button.upButton = false;
+	button.downButton = false;
 }
 
 
@@ -21,22 +21,35 @@ void Floor::init(int _num)
 
 void Floor::update()
 {
-	for (int i=0; i < waitPeople.size(); i++)
+
+}
+
+void Floor::checkButton()
+{
+	for (int i = 0; i < waitPeople.size(); i++)
 	{
-		if (floorNum > waitPeople[i]->getDestination())
+		if (floorNum < waitPeople[i]->getDestination())
 		{
-			upButton = true;
+			button.upButton = true;
+			button.call = true;
 		}
-		else 
+		else
 		{
-			downButton = true;
+			button.downButton = true;
+			button.call = true;
 		}
+
+		waitPeople[i]->countUp();
 	}
 }
 
 void Floor::addPeople()
 {
-	waitPeople.push_back(new People());
+	People* nP;
+	nP = new People();
+	nP->setDestination(floorNum);
+	waitPeople.push_back(nP);
+	checkButton();
 }
 
 int Floor::getPeopleNum()

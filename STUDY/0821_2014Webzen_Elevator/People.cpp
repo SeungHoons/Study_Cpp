@@ -5,6 +5,7 @@
 People::People()
 {
 	floor = 0;
+	count = 0;
 }
 
 

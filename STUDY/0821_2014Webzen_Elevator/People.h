@@ -14,5 +14,7 @@ public:
 
 	void setDestination(int _floor);
 	int getDestination() { return destination; }
+
+	inline void countUp() { count++; }
 };
 
