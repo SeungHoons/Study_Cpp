@@ -47,5 +47,58 @@ void ElevatorManager::print()
 
 void ElevatorManager::call(int _floor, Button* _pButton)
 {
+	map<int, Elevator*> shortDitanceElevator;
 
+	for (int i = 0; i < MAX_ELEVATOR; i++)
+	{
+		pair<int, Elevator*> tempPair((abs(pElevator[i].getFloor() - _floor)), &pElevator[i]);
+		shortDitanceElevator.insert(tempPair);
+	}
+
+	for (auto iter = shortDitanceElevator.begin(); iter != shortDitanceElevator.end(); iter++)
+	{
+		if(_pButton->downButton)
+		{
+			if ((*iter).second->getState() == DOWN && ((*iter).second->getFloor() - _floor) >= 0)
+			{
+				(*iter).second->setTarget(_floor);
+				break;
+			}
+			else if ((*iter).second->getState() == STOP)
+			{
+				(*iter).second->setTarget(_floor);
+				if (((*iter).second->getFloor() - _floor) >= 0)
+				{
+					(*iter).second->setState(DOWN);
+				}
+				else
+				{
+					(*iter).second->setState(UP);
+				}
+				break;
+			}
+		}
+
+		if (_pButton->upButton)
+		{
+			if ((*iter).second->getState() == UP && ((*iter).second->getFloor() - _floor) <= 0)
+			{
+				(*iter).second->setTarget(_floor);
+				break;
+			}
+			else if ((*iter).second->getState() == STOP)
+			{
+				(*iter).second->setTarget(_floor);
+				if (((*iter).second->getFloor() - _floor) <= 0)
+				{
+					(*iter).second->setState(UP);
+				}
+				else
+				{
+					(*iter).second->setState(DOWN);
+				}
+				break;
+			}
+		}
+	}
 }

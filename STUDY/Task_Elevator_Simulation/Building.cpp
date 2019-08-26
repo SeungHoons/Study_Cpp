@@ -22,26 +22,6 @@ void Building::setMode()
 	autoMode = input - 1;
 }
 
-void Building::addPeople()
-{
-	People* nP;
-	nP = new People();
-	nP->setDestination(cursor);
-
-	floor[cursor].waitPeople.insert(pair<int, People*>(nP->getDestination(), nP));
-	floor[cursor].button = 
-	//pFloor[cursor].addPeople();
-	//callElevator();
-}
-
-void Building::randomPeople()
-{
-	int random = rand() % MAX_FLOOR;
-
-	//pFloor[random].addPeople();
-	//callElevator();
-}
-
 void Building::init()
 {
 	for (int i = 0; i < MAX_FLOOR; i++)
@@ -101,6 +81,26 @@ void Building::print()
 	pElevatorManager->print();
 }
 
+void Building::addPeople()
+{
+	People* nP;
+	nP = new People();
+	nP->setDestination(cursor);
+
+	floor[cursor].waitPeople.insert(pair<int, People*>(nP->getDestination(), nP));
+	changeButton(cursor);
+	pElevatorManager->call(cursor, &(floor[cursor].button));
+	//callElevator();
+}
+
+void Building::randomPeople()
+{
+	int random = rand() % MAX_FLOOR;
+
+	//pFloor[random].addPeople();
+	//callElevator();
+}
+
 
 void Building::callElevator()
 {
@@ -108,7 +108,7 @@ void Building::callElevator()
 	{
 		if (floor[i].button.downButton || floor[i].button.upButton)
 		{
-			//pElevatorManager
+			pElevatorManager->call(i, &(floor[i].button));
 		}
 	}
 }
@@ -127,4 +127,34 @@ void Building::changeButton(int index)
 		}
 	}
 	
+}
+
+void Building::moveInElevator()
+{
+
+}
+
+void Building::equelElevator()
+{
+	for (int i = 0; i < MAX_FLOOR; i++)
+	{
+		if (floor[i].waitPeople.size() > 0)
+		{
+			//pElevatorManager->
+		}
+	}
+}
+
+void Building::test1(Elevator * _pElevator)
+{
+	for (int i = 0; i < MAX_FLOOR; i++)
+	{
+		if (i == _pElevator->getFloor())
+		{
+			if (floor[i].waitPeople.size())
+			{
+				
+			}
+		}
+	}
 }

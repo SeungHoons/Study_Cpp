@@ -26,7 +26,7 @@ public:
 
 	void setState(STATE _state);
 	void setType(ELEVATOR_TYPE _type);
-	void setTarget(int _target) { target = _target; }
+	void setTarget(int _target);
 
 	inline int getTarget() { return target; }
 	inline int getFloor() { return floor; }

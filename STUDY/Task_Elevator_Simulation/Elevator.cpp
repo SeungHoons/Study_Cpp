@@ -2,6 +2,7 @@
 #include "People.h"
 
 
+
 Elevator::Elevator()
 {
 	floor = 0;
@@ -42,6 +43,8 @@ void Elevator::print()
 
 void Elevator::move()
 {
+	arrival();
+
 	switch (state)
 	{
 	case UP:
@@ -56,7 +59,6 @@ void Elevator::move()
 		break;
 	}
 
-	arrival();
 
 	/*for (int i = 0; i < peopleInElevator.size(); i++)
 	{
@@ -77,8 +79,8 @@ void Elevator::setType(ELEVATOR_TYPE _type)
 
 void Elevator::inElevator(People * _pPeople)
 {
-	//peopleInElevator.insert(pair<int, People*>(_pPeople->getDestination(), _pPeople));
-	//peopleNum = peopleInElevator.size();
+	peopleInElevator.insert(pair<int, People*>(_pPeople->getDestination(), _pPeople));
+	peopleNum = peopleInElevator.size();
 }
 
 void Elevator::arrival()
@@ -97,5 +99,27 @@ void Elevator::targetUpdate()
 		//if()
 
 		//(*iter)->getDestination
+	}
+}
+
+void Elevator::setTarget(int _target)
+{
+	if (state == UP)
+	{
+		if (target < _target)
+		{
+			target = _target;
+		}
+	}
+	else if (state == DOWN)
+	{
+		if (target > _target)
+		{
+			target = _target;
+		}
+	}
+	else if (state == STOP)
+	{
+		target = _target;
 	}
 }

@@ -3,6 +3,7 @@
 
 class People;
 class ElevatorManager;
+class Elevator;
 struct Floor
 {
 	map<int, People*> waitPeople;
@@ -25,14 +26,17 @@ public:
 	void cursorUp() { cursor++; }
 	void cursorDown() { cursor--; }
 
-	void addPeople();
-	void randomPeople();
-
 	void init();
 	void update();
 	void print();
 
+	void addPeople();
+	void randomPeople();
+
 	void callElevator();
 	void changeButton(int index);
+	void moveInElevator();
+	void equelElevator();
+	void test1(Elevator* _pElevator);
 };
 
