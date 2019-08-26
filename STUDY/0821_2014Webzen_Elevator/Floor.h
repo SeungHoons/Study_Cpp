@@ -2,12 +2,12 @@
 #include "Global.h"
 
 class People;
+class Elevator;
 class Floor
 {
 	int floorNum;
 	deque<People*> waitPeople;
-	bool upButton;
-	bool downButton;
+	Button button;
 
 public:
 	Floor();
@@ -19,8 +19,12 @@ public:
 	//void setUpbutton() { upButton = true; }
 	//void setDownbutton() { downButton = true; }
 	void update();
+	void checkButton();
 
 	void addPeople();
 	int getPeopleNum();
+	People* relayPeople();
+	Button* getButton() { return &button; }
+	void checkPeople(Elevator* _pElevator);
 };
 

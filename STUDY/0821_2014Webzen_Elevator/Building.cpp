@@ -11,7 +11,7 @@ Building::Building()
 	pFloor = new Floor[MAX_FLOOR];
 	for (int i = 0; i < MAX_FLOOR; i++)
 	{
-		pFloor->init(i + 1);
+		pFloor[i].init(i);
 	}
 	cursor = 0;
 }
@@ -34,6 +34,7 @@ void Building::setMode()
 void Building::addPeople()
 {
 	pFloor[cursor].addPeople();
+	callElevator();
 }
 
 void Building::randomPeople()
@@ -41,24 +42,46 @@ void Building::randomPeople()
 	int random = rand() % MAX_FLOOR;
 
 	pFloor[random].addPeople();
+	callElevator();
 }
 
 void Building::update()
 {
 	pElevatorManager->update();
+	//for (int i = 0; i < MAX_FLOOR; i++)
+	//{
+	//	pFloor[i].update();
+	//}
+	equelFloorEelevator();
+}
+
+void Building::callElevator()
+{
 	for (int i = 0; i < MAX_FLOOR; i++)
 	{
-		pFloor[i].update();
+		if (pFloor[i].getButton()->call == true)
+		{
+			pElevatorManager->call(i, pFloor[i].getButton());
+		}
 	}
 }
 
-void Building::search()
+void Building::equelFloorEelevator()
 {
-
+	for (int i = 0; i < MAX_FLOOR; i++)
+	{
+		if (pFloor[i].getPeopleNum() > 0)
+		{
+			pElevatorManager->whareElevator(i, pFloor[i]);
+		}
+	}
 }
+
+
 
 void Building::print()
 {
+	//°íÄ¡±â
 	Elevator *tempEelevator = pElevatorManager->getPointer();
 
 	for (int i = MAX_FLOOR -1; i > -1; i--)
@@ -72,16 +95,16 @@ void Building::print()
 				switch (j)
 				{
 				case 0:
-					cout << "¨ç";
+					cout << "¨ç  ";
 					break;
 				case 1:
-					cout << "¨è";
+					cout << "¨è  ";
 					break;
 				case 2:
-					cout << "¨é";
+					cout << "¨é  ";
 					break;
 				case 3:
-					cout << "¨ê";
+					cout << "¨ê  ";
 					break;
 				default:
 					break;
@@ -89,7 +112,7 @@ void Building::print()
 			}
 			else
 			{
-				cout << "  ";
+				cout << "    ";
 			}
 		}
 		if (i == cursor)

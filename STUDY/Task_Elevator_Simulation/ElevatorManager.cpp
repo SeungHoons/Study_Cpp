@@ -1,15 +1,12 @@
 #include "ElevatorManager.h"
 #include "Elevator.h"
-#include "Floor.h"
+#include "People.h"
+
 
 
 ElevatorManager::ElevatorManager()
 {
 	pElevator = new Elevator[4];
-	/*pElevator[0].setType(LOW);
-	pElevator[1].setType(HIGH);
-	pElevator[2].setType(HIGH);
-	pElevator[3].setType(ALL);*/
 	for (int i = 0; i < MAX_ELEVATOR; i++)
 	{
 		pElevator[i].setType(ALL);
@@ -20,6 +17,8 @@ ElevatorManager::ElevatorManager()
 ElevatorManager::~ElevatorManager()
 {
 }
+
+
 
 void ElevatorManager::update()
 {
@@ -47,28 +46,21 @@ void ElevatorManager::print()
 	}
 }
 
-
-void ElevatorManager::call(int _floor, const Button* _pButton)
+void ElevatorManager::call(int _floor, Button* _pButton)
 {
-	int min = MAX_ELEVATOR;
-	
-
+	map<int, Elevator*> shortDitanceElevator;
 
 	for (int i = 0; i < MAX_ELEVATOR; i++)
 	{
-		pair<int, Elevator*> shotElevator((abs(pElevator[i].getFloor() - _floor)), &pElevator[i]);
-		shortElevator.insert(shotElevator);
+		pair<int, Elevator*> tempPair((abs(pElevator[i].getFloor() - _floor)), &pElevator[i]);
+		shortDitanceElevator.insert(tempPair);
 	}
-	
-	/////////////////////////////////////////////////////////////////////////////////////
-	////////////////////////////반복되는거 함수화 시키기////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////
-	for (auto iter = shortElevator.begin(); iter != shortElevator.end(); iter++)
+
+	for (auto iter = shortDitanceElevator.begin(); iter != shortDitanceElevator.end(); iter++)
 	{
-		
-		if (_pButton->downButton)
+		if(_pButton->downButton)
 		{
-			if ((*iter).second->getState() == DOWN && ((*iter).second->getFloor() - _floor)>=0)
+			if ((*iter).second->getState() == DOWN && ((*iter).second->getFloor() - _floor) >= 0)
 			{
 				(*iter).second->setTarget(_floor);
 				break;
@@ -87,7 +79,8 @@ void ElevatorManager::call(int _floor, const Button* _pButton)
 				break;
 			}
 		}
-		if(_pButton->upButton)
+
+		if (_pButton->upButton)
 		{
 			if ((*iter).second->getState() == UP && ((*iter).second->getFloor() - _floor) <= 0)
 			{
@@ -109,44 +102,20 @@ void ElevatorManager::call(int _floor, const Button* _pButton)
 			}
 		}
 	}
-	
-
-	/*Elevator* minElevator;
-	for (auto iter = pElevator; iter < pElevator + MAX_ELEVATOR; iter++)
-	{
-		if (min > abs(iter->getFloor() - _floor))
-		{
-			minElevator = iter;
-		}
-	}
-
-	if ((minElevator->getFloor() - _floor) > 0)
-	{
-		minElevator->setState(DOWN);
-	}
-	else
-	{
-		minElevator->setState(UP);
-	}*/
 }
 
-
-void ElevatorManager::serchElevator()
-{
-}
-
-void ElevatorManager::whareElevator(int index, Floor& _pFloor)
+bool ElevatorManager::checkFloor(People * _people)
 {
 	for (int i = 0; i < MAX_ELEVATOR; i++)
 	{
-		if (pElevator[i].getFloor() == index)
+		if (pElevator[i].getFloor() == _people->getFloor())
 		{
-			_pFloor.checkPeople(&pElevator[i]);
+			if ((pElevator[i].getState() == _people->getDiarecton()) || (pElevator[i].getState() == STOP))
+			{
+				pElevator[i].inElevator(_people);
+				return 1;
+			}
 		}
 	}
-}
-
-void ElevatorManager::floorToElevator(Floor* _pFloor)
-{
-	_pFloor->relayPeople();
+	return 0;
 }

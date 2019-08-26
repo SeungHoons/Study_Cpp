@@ -13,12 +13,22 @@ People::~People()
 {
 }
 
+
+
 void People::setDestination(int _floor)
 {
 	floor = _floor;
 
+	while (true)
+	{
+		destination = rand() % MAX_FLOOR;
+		if (floor == destination)
+			continue;
 
-	if (floor == 0)
+		break;
+	}
+
+	/*if (floor == 0)
 	{
 		while (true)
 		{
@@ -32,7 +42,7 @@ void People::setDestination(int _floor)
 	else
 	{
 		destination = 0;
-	}
+	}*/
 
 	setDirection();
 }

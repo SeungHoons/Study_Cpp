@@ -5,7 +5,6 @@
 using namespace std;
 Building building;
 
-
 void print()
 {
 	system("cls");
@@ -35,6 +34,7 @@ void input()
 		}
 	}
 }
+
 void update()
 {
 	building.update();
@@ -45,6 +45,7 @@ int main()
 	srand(time(nullptr));
 
 	building.setMode();
+	building.init();
 	print();
 
 	while (true)
@@ -53,8 +54,7 @@ int main()
 		print();
 		update();
 
-		_sleep(1000 / 5);
+		_sleep(1000 / 25);
 	}
-
 	return 0;
 }

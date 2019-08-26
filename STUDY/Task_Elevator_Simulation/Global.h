@@ -2,10 +2,10 @@
 //라이브러리
 #include<iostream>
 #include<vector>
-#include<deque>						// 순차적인 탐방												
-#include<list>						//deque를 사용하려 했으나 앞에서 부터 팝이 벡터에 비해 빠르다고 해도 결국 앞에만 계속 자르다 보면 뒤 메모리 공간까지 접근해서 
-#include<set>						//뒤 메모리 공간에 메모리가 있을경우 다시 할당할것
-#include<time.h>					//리스트 중에서도 단방향 리스트가 가볍다 생각되어 
+#include<deque>	
+#include<list>	
+#include<set>	
+#include<time.h>
 #include<utility>
 #include<map>
 using namespace std;
@@ -16,9 +16,9 @@ using namespace std;
 //디파인
 #define MAX_FLOOR 20
 #define MAX_PEOPLE 100;
+#define MAX_ELEVATOR 4
 
-
-//이넘
+////이넘
 //현재 엘리베이터 상태
 enum STATE
 {

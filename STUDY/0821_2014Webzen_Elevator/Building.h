@@ -22,7 +22,8 @@ public:
 	void randomPeople();
 	
 	void update();
-	void search();
 	void print();
+	void callElevator();
+	void equelFloorEelevator();
 };
 

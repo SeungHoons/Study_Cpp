@@ -1,9 +1,9 @@
 #pragma once
-
-#include"Global.h"
+#include "Global.h"
 
 class People
 {
+private:
 	int count;			//몇 번 기다렸는지.
 	int weight;			//무게
 	int destination;	//목적지
@@ -16,6 +16,7 @@ public:
 	void setDestination(int _floor);
 	int getDestination() { return destination; }
 	void setDirection();
+	int getFloor() { return floor; }
 
 	STATE getDiarecton() { return direction; }
 	inline void countUp() { count++; }

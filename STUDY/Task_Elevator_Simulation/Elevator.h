@@ -6,28 +6,28 @@
 class People;
 class Elevator
 {
+private:
 	int floor;
 	int peopleNum;
 	int weight;
 	int target;
 	STATE state;
 	ELEVATOR_TYPE type;
-	deque<People*> inPeople;
-
+	multimap<int, People*> peopleInElevator;
 public:
 	Elevator();
 	~Elevator();
 
 	void print();
-	void update();
 	void move();
 	void inElevator(People *_pPeople);
+	void outElevator();
 	void arrival();
 	void targetUpdate();
 
 	void setState(STATE _state);
 	void setType(ELEVATOR_TYPE _type);
-	void setTarget(int _target) { target = _target; }
+	void setTarget(int _target);
 
 	inline int getTarget() { return target; }
 	inline int getFloor() { return floor; }
@@ -35,7 +35,7 @@ public:
 	inline STATE getState() { return state; }
 	inline ELEVATOR_TYPE getType() { return type; }
 
-	//지울지 말지 나중에 판단
+
 	inline int getPople() { return peopleNum; }	//인원수 제한 둘떄
 
 
