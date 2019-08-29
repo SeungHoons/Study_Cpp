@@ -39,7 +39,9 @@ void Rain::move()
 		point.y += speed;
 	RECT tempRc = { point.x,point.y,point.x + (10 * str.size()),point.y + 20 };
 	rc.top = point.y;
+	rc.left = point.x;
 	rc.bottom = rc.top + 20;
+	rc.right = point.x + (10 * str.size());
 }
 
 void Rain::setPoint(POINT _point)

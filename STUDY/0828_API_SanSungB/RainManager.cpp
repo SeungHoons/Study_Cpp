@@ -99,6 +99,7 @@ void RainManager::randomRain()
 	POINT _point;
 	while (true)
 	{
+		ran = rand() % pRain.size();
 		GetClientRect(hWnd, &_rc);
 		_point = { _rc.right, _rc.bottom };
 		if (!pRain[ran]->getActive())
