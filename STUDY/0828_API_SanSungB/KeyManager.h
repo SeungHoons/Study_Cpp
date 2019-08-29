@@ -1,4 +1,5 @@
 #pragma once
+#include "Global.h"
 class KeyManager
 {
 private:
@@ -20,5 +21,7 @@ public:
 		if (pThis != nullptr)
 			delete pThis;
 	}
+
+	void input(WPARAM wParam);
 };
 

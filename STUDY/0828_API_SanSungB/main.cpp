@@ -44,18 +44,34 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	HDC hdc;
 	PAINTSTRUCT ps;
-	static GameManager* gameManager;
+	static GameManager* pGameManager;
+	time_t  mytime;
+	static HANDLE hTimer;
+
 	switch (iMessage)
 	{
 	case WM_CREATE:
-		gameManager = new GameManager();
-		gameManager->init();
+		srand(time(nullptr));
+		hTimer = (HANDLE)SetTimer(hWnd, 1, 1000/60, NULL);
+
+		pGameManager = new GameManager();
+		pGameManager->init(hWnd);
 		AllocConsole();
 		return 0;
 
+	case WM_TIMER:
+		time(&mytime);
+		pGameManager->update();
+		InvalidateRect(hWnd, NULL, TRUE);
+		return 0;
+
+	case WM_CHAR:
+		pGameManager->input(wParam);
+		InvalidateRect(hWnd, NULL, FALSE);
+		return 0;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
-
+		pGameManager->print(hdc);
 		EndPaint(hWnd, &ps);
 		return 0;
 	case WM_DESTROY:

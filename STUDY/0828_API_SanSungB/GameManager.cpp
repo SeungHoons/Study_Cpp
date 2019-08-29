@@ -6,7 +6,8 @@
 
 GameManager::GameManager()
 {
-	rainManager = new RainManager();
+	pRainManager = new RainManager();
+	pUser = new User();
 }
 
 
@@ -14,8 +15,30 @@ GameManager::~GameManager()
 {
 }
 
-void GameManager::init()
+void GameManager::init(HWND hWnd)
 {
-	rainManager->loadWord();
-	rainManager->createWord();
+	pRainManager->init(hWnd);
+	pUser->init(hWnd);
+}
+
+void GameManager::input(WPARAM wParam)
+{
+	pUser->input(wParam);
+}
+
+void GameManager::print(HDC hdc)
+{
+	pUser->print(hdc);
+	pRainManager->print(hdc);
+}
+
+void GameManager::update()
+{
+	pUser->update();
+	pRainManager->update();
+}
+
+void GameManager::correctStr()
+{
+
 }

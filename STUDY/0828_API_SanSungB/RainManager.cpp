@@ -5,6 +5,7 @@
 RainManager::RainManager()
 {
 	wordCount = 0;
+	respawnTime = 0;
 }
 
 
@@ -48,9 +49,70 @@ void RainManager::createWord()
 			c = loadStirng[index];
 			*tempString = *tempString + c;
 		}
-		Word.push_back(tempString);
+		pRain.push_back(new Rain());
+		pRain[pRain.size() - 1]->init(*tempString);
+		//pRain.push_back(tempString);
 		index+=2;
 	}
+}
+
+void RainManager::init(HWND _hWnd)
+{
+	loadWord();
+	createWord();
+	hWnd = _hWnd;
+	//pRain[0]->setActive(TRUE);
+	for (int i = 0; i < pRain.size(); i++)
+	{
+		setOrder();
+	}
+	startTime = clock();
+	respawnTime = 1000 *1;
+}
+
+void RainManager::print(HDC _hdc)
+{
+	for (int i = 0; i < pRain.size(); i++)
+	{
+		pRain[i]->print(_hdc);
+	}
+}
+
+void RainManager::update()
+{
+	if (clock() - startTime > respawnTime)
+	{
+		randomRain();
+		startTime = clock();
+	}
+	for (int i = 0; i < pRain.size(); i++)
+	{
+		pRain[i]->move();
+	}
+
+}
+
+void RainManager::randomRain()
+{
+	int ran = rand() % pRain.size();
+	RECT _rc;
+	POINT _point;
+	while (true)
+	{
+		GetClientRect(hWnd, &_rc);
+		_point = { _rc.right, _rc.bottom };
+		if (!pRain[ran]->getActive())
+		{
+			pRain[ran]->setActive(true);
+			pRain[ran]->setPoint(_point);
+			break;
+		}
+	}
+}
+
+void RainManager::setOrder()
+{
+	order.push(pRain[rand() % pRain.size()]);
 }
 
 
