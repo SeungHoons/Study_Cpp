@@ -116,4 +116,20 @@ void RainManager::setOrder()
 	order.push(pRain[rand() % pRain.size()]);
 }
 
+bool RainManager::correctStr(TCHAR* _str)
+{
+	char charTemp[256];
+	WideCharToMultiByte(CP_ACP, 0, _str, 256, charTemp, 256, NULL, NULL);
+	for (int i = 0; i < pRain.size(); i++)
+	{
+		if (!strcmp(pRain[i]->getStr()->c_str(), charTemp))
+		{
+			pRain[i]->setActive(false);
+			return true;
+		}
+	
+	}
+	return false;
+}
+
 

@@ -18,7 +18,7 @@ void User::init(HWND _hWnd)
 	GetClientRect(_hWnd, &tempRc);
 	setUserRect(tempRc);
 	memset(str, 0, 256);
-
+	score = 0;
 }
 
 void User::print(HDC hdc)
@@ -37,6 +37,10 @@ void User::input(WPARAM wParam)
 	{
 		enterKey();
 	}
+	if (((TCHAR)wParam) == '\b')
+	{
+		str[len - 1] = 0;
+	}
 	len = lstrlen(str);
 	str[len] = (TCHAR)wParam;
 	str[len + 1] = 0;
@@ -53,4 +57,10 @@ void User::setUserRect(RECT & rc)
 	userRc.left = (rc.right / 2)- 50;
 	userRc.right = userRc.left + 100;
 	userRc.bottom = userRc.top + 50;
+}
+
+void User::upScore()
+{
+	enterKey();
+	score += 100;
 }

@@ -7,6 +7,7 @@ private:
 	RECT userRc;
 	TCHAR str[256];
 	int len;
+	int score;
 
 public:
 	User();
@@ -18,5 +19,7 @@ public:
 	void input(WPARAM wParam);
 	void enterKey();
 	void setUserRect(RECT &rc);
+	TCHAR* getUserStr(){ return str; }
+	void upScore();
 };
 

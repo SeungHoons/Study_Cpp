@@ -26,6 +26,8 @@ public:
 	
 	void randomRain();
 	void setOrder();		//한단어를 여러번 오더에 그냐 아예 새로운 객체를 넣어준다. 나중에
+	
+	bool correctStr(TCHAR* _str);
 
 };
 

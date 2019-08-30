@@ -24,6 +24,10 @@ void GameManager::init(HWND hWnd)
 void GameManager::input(WPARAM wParam)
 {
 	pUser->input(wParam);
+	if (((TCHAR)wParam) == '\r')
+	{
+		correctStr();
+	}
 }
 
 void GameManager::print(HDC hdc)
@@ -40,5 +44,8 @@ void GameManager::update()
 
 void GameManager::correctStr()
 {
-
+	if (pRainManager->correctStr(pUser->getUserStr()))
+	{
+		pUser->upScore();
+	}
 }

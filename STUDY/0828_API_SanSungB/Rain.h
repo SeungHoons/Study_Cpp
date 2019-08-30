@@ -21,5 +21,7 @@ public:
 
 	void setActive(bool b);
 	inline bool getActive() { return active; }
+
+	string* getStr() { return &str; }
 };
 
