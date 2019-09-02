@@ -114,6 +114,8 @@ void MainGame::Draw(HDC hdc)
 	}
 }
 
+
+
 void MainGame::Release()
 {
 	for (auto iter = m_vecCard.begin(); iter != m_vecCard.end(); iter++)
