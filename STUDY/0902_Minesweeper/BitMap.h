@@ -13,6 +13,8 @@ public:
 	void draw(HDC hdc, int x, int y);
 	void release();
 
+	SIZE getSize() { return size; }
+
 
 	BitMap();
 	~BitMap();

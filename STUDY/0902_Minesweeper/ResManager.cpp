@@ -1,6 +1,7 @@
 #include "ResManager.h"
 #include "BitMap.h"
 //#include "resource.h"
+#include "macro.h"
 ResManager* ResManager::sThis = nullptr;
 
 
@@ -49,8 +50,8 @@ BitMap* ResManager::getBitMap(int index)
 
 void ResManager::release()
 {
-	//for (int i = 0; i < RES_TYPE_END; i++)
-	//{
-	//	SAFE_DELETE(pBitMap[i]);
-	//}
+	for (int i = 0; i < RES_TYPE_END; i++)
+	{
+		SAFE_DELETE(pBitMap[i]);
+	}
 }

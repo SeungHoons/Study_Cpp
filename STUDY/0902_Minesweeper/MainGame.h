@@ -28,6 +28,7 @@ public:
 	void update();
 	void input(POINT pt);
 
+
 	void release();
 	~MainGame();
 };

@@ -23,7 +23,7 @@
     <ProjectGuid>{B0241546-2F63-4CCE-8776-CF9A0A8A1C47}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>My0822STLAlgorithm</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

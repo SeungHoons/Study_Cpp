@@ -1,6 +1,5 @@
 #include <windows.h>
 #include <crtdbg.h>		//메모리 릭 체크
-
 #include "MainGame.h"
 #include "resource.h"
 
@@ -76,6 +75,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		pt.x = LOWORD(lParam);
 		pt.y = HIWORD(lParam);
 		MainGame::GetInstance()->input(pt);
+		InvalidateRect(hWnd, NULL, TRUE);
 		return 0;
 	case  WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);

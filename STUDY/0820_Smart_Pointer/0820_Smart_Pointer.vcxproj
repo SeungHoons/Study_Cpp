@@ -23,7 +23,7 @@
     <ProjectGuid>{90405E27-4F3E-4CD6-8D92-F6F2C94892A5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>My0820SmartPointer</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

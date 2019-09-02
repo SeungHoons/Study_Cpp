@@ -25,6 +25,7 @@ void MainGame::init(HWND _hWnd, HDC _hdc, HINSTANCE _hInst)
 void MainGame::draw(HDC hdc)
 {
 	hBitmap->draw(hdc, 0, 0);
+	pMineManager->draw(hdc);
 }
 
 void MainGame::update()
@@ -33,6 +34,7 @@ void MainGame::update()
 
 void MainGame::input(POINT pt)
 {
+	pMineManager->clickCheck(pt);
 }
 
 void MainGame::release()

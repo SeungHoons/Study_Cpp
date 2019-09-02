@@ -24,7 +24,6 @@ void BitMap::init(HDC hdc, HINSTANCE hInst, std::string str)
 	GetObject(hBitMap, sizeof(bitmap), &bitmap);
 	size.cx = bitmap.bmWidth;
 	size.cy = bitmap.bmHeight;
-
 }
 
 void BitMap::draw(HDC hdc, int x, int y)
