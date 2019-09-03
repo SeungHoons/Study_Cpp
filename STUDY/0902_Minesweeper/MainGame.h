@@ -26,7 +26,8 @@ public:
 	void init(HWND _hWnd, HDC _hdc, HINSTANCE _hInst);
 	void draw(HDC hdc);
 	void update();
-	void input(POINT pt);
+	void lButtonInput(POINT pt);
+	void rButtonInput(POINT pt);
 
 
 	void release();

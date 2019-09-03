@@ -45,7 +45,19 @@ void MineBox::setBlock(STATE_BOX _state)
 	inState = _state;
 }
 
-void MineBox::clickBox(POINT _point)
+void MineBox::setFlag()
+{
+	if (nowState == STATE_TYPE_FLAG)
+	{
+		nowState = STATE_TYPE_BLOCK;
+	}
+	else
+	{
+		nowState = STATE_TYPE_FLAG;
+	}
+}
+
+bool MineBox::clickBox(POINT _point)
 {
 
 	SIZE tempSize;
@@ -57,17 +69,61 @@ void MineBox::clickBox(POINT _point)
 	if (PtInRect(&rc, _point))
 	{
 		checkMine();
+		return true;
 	}
+	return false;
+}
+
+bool MineBox::rbClickBox(POINT _point)
+{
+	SIZE tempSize;
+	tempSize = pBitMap[nowState]->getSize();
+	RECT rc = { startPoint.x + (point.x * tempSize.cx),
+	startPoint.y + (point.y * tempSize.cy) ,
+	startPoint.x + (point.x * tempSize.cy) + tempSize.cx,
+	startPoint.y + (point.y * tempSize.cy) + tempSize.cy };
+	if (PtInRect(&rc, _point))
+	{
+		return true;
+	}
+	return false;
 }
 
 void MineBox::checkMine()
 {
 	if (inState == STATE_TYPE_MINE)
 	{
-
 	}
 	else
 	{
-		nowState = inState;
 	}
+
+	//if (nowState == inState)
+	//{
+
+	//}
+	//else
+	//{
+	//	nowState = inState;
+	//	isOpen = true;
+	//}
+
+	nowState = inState;
+	isOpen = true;
+}
+
+bool MineBox::ischeckMine()
+{
+	if (inState == STATE_TYPE_MINE)
+		return true;
+	else
+		return false;
+}
+
+bool MineBox::isBlock00()
+{
+	if (inState == STATE_TYPE_BLOCK_00)
+		return true;
+	else
+		return false;
 }

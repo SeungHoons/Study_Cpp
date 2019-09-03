@@ -32,9 +32,14 @@ void MainGame::update()
 {
 }
 
-void MainGame::input(POINT pt)
+void MainGame::lButtonInput(POINT pt)
 {
 	pMineManager->clickCheck(pt);
+}
+
+void MainGame::rButtonInput(POINT pt)
+{
+	pMineManager->rbClickCheck(pt);
 }
 
 void MainGame::release()

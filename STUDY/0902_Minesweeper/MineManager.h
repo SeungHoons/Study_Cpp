@@ -23,7 +23,12 @@ public:
 	void update();
 
 	void setBlockOfRandom(int _MineNum);
+	void setBlockOfNormal();
+	void checkAreaOfBlock(int _index);
+	void opendBlock00(int _index);
 	void clickCheck(POINT _point);
+	void rbClickCheck(POINT _point);
+	void clickOpend(int _index);
 	
 };
 

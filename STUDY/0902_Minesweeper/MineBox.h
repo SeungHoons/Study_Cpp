@@ -36,7 +36,13 @@ public:
 	void init(int _num, int _x, int _y, POINT _start);
 	void draw(HDC _hdc);
 	void setBlock(STATE_BOX _state);
-	void clickBox(POINT _point);
+	void setFlag();
+	bool clickBox(POINT _point);
+	bool rbClickBox(POINT _point);
 	void checkMine();
+
+	bool ischeckMine();
+	bool isOpend() { return isOpen; }
+	bool isBlock00();
 };
 

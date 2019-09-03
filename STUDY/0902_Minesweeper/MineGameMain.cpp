@@ -74,7 +74,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_LBUTTONDOWN:
 		pt.x = LOWORD(lParam);
 		pt.y = HIWORD(lParam);
-		MainGame::GetInstance()->input(pt);
+		MainGame::GetInstance()->lButtonInput(pt);
+		InvalidateRect(hWnd, NULL, TRUE);
+		return 0;
+	case WM_RBUTTONDOWN:
+		pt.x = LOWORD(lParam);
+		pt.y = HIWORD(lParam);
+		MainGame::GetInstance()->rButtonInput(pt);
 		InvalidateRect(hWnd, NULL, TRUE);
 		return 0;
 	case  WM_PAINT:
