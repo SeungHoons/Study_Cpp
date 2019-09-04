@@ -1,7 +1,5 @@
 #include <Windows.h>
-#include <vector>
-#include <math.h>
-#include <utility>
+#include "SceneManager.h"
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 HINSTANCE g_hInst;
 LPCTSTR lpszClass = TEXT("CIRCUS_ copyright _ Hoons");
@@ -37,6 +35,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstace, LPSTR lpszCmpP
 	return (int)Message.wParam;
 }
 
+SceneManager* pSceneManager;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	HDC hdc;
@@ -45,7 +44,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 
 	switch (iMessage)
 	{
+	case WM_CREATE:
+		SetTimer(hWnd, 1, 10, NULL);
+		pSceneManager = new SceneManager();
+		return 0;
 
+	case WM_TIMER:
+
+		return 0;
 	case WM_LBUTTONDOWN:
 		//x = LOWORD(lParam);
 		//y = HIWORD(lParam);
@@ -57,7 +63,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		return 0;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
-
+		
 		EndPaint(hWnd, &ps);
 		return 0;
 
