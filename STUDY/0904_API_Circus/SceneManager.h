@@ -5,14 +5,15 @@
 
 enum SCENE_STATE
 {
-	MENU,
-	STAGE_ONE
+	SCENE_MENU,
+	SCENE_STAGE_ONE
 };
 
 class Scene;
 class SceneManager : public singletonBase<SceneManager>
 {
-private: 
+private:
+	HWND m_hWnd;
 	Scene* m_pNowScene;
 	SCENE_STATE m_eNowSceneState;
 	SCENE_STATE m_eNextScene;
@@ -23,11 +24,38 @@ public:
 	SceneManager();
 	~SceneManager();
 
-
-	void init(HWND hWnd);
+	void init(HWND _hWnd);
 	void update();
-	void render();
-	void input();
+	void render(HDC _hdc);
+	void input(WPARAM _wParam);
 
+	void freeInst();
+	void sceneChange(SCENE_STATE _state);
+
+	inline void nextSceneChange(SCENE_STATE _state) // 씬 변경 예약함수
+	{ 
+		m_eNextScene = _state;
+		m_bSceneChage = true;
+	}
+	inline SCENE_STATE getNextScene(void)   // 예약된 씬을 얻어옴
+	{
+		return m_eNextScene;
+	}
+	inline bool getSceneChange (void)    // 예약유무를 얻어옴
+	{
+		return m_bSceneChage;
+	}
+	inline void setGameEnd(bool _bEnd)      // 게임이 종료될 것인가?
+	{
+		m_bGameEnd = _bEnd;
+	}
+	inline bool getGameEnd(void)      // 게임이 종료되었는가?
+	{
+		return m_bGameEnd;
+	}
+	inline SCENE_STATE getNowState(void) // 현재 씬을 반환
+	{
+		return m_eNowSceneState;
+	}
 };
 

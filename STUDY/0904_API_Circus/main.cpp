@@ -45,29 +45,36 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	switch (iMessage)
 	{
 	case WM_CREATE:
+		SceneManager::getSingleton()->init(hWnd);
+
 		SetTimer(hWnd, 1, 10, NULL);
-		pSceneManager = new SceneManager();
 		return 0;
 
 	case WM_TIMER:
-
+		SceneManager::getSingleton()->update();
+		//타이머가 엄청 빠르니까 출력하는것도 cpu 최대치로 출력할꺼임 프레임 제한 걸어주는거 생각해보기
 		return 0;
-	case WM_LBUTTONDOWN:
-		//x = LOWORD(lParam);
-		//y = HIWORD(lParam);
-		//bNowDraw = TRUE;
+	case WM_KEYDOWN:
+		SceneManager::getSingleton()->input(wParam);
 		return 0;
-	case WM_MOUSEMOVE:
-		return 0;
-	case WM_LBUTTONUP:
-		return 0;
+	//case WM_LBUTTONDOWN:
+	//	//x = LOWORD(lParam);
+	//	//y = HIWORD(lParam);
+	//	//bNowDraw = TRUE;
+	//	return 0;
+	//case WM_MOUSEMOVE:
+	//	return 0;
+	//case WM_LBUTTONUP:
+	//	return 0;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
-		
+		SceneManager::getSingleton()->render(hdc);
 		EndPaint(hWnd, &ps);
 		return 0;
 
 	case WM_DESTROY:
+		SceneManager::getSingleton()->freeInst();
+		SceneManager::getSingleton()->releaseSingleton();
 		PostQuitMessage(0);
 		return 0;
 	}
