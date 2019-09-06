@@ -1,5 +1,5 @@
 #include "Object.h"
-
+#include "Image.h"
 
 Object::Object()
 {

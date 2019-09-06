@@ -6,5 +6,9 @@ class Tile :
 public:
 	Tile();
 	~Tile();
+
+	virtual void init(HDC _hdc);
+	virtual void update();
+	virtual void render(HDC _hdc);
 };
 

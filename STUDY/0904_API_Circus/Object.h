@@ -4,7 +4,7 @@
 class Image;
 class Object
 {
-private:
+protected:
 	POINT m_position;
 	Image* m_image;
 
@@ -12,8 +12,8 @@ public:
 	Object();
 	~Object();
 
-	void init();
-	void update();
-	void render(HDC _hdc);
+	virtual void init();
+	virtual void update();
+	virtual void render(HDC _hdc);
 };
 

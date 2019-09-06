@@ -3,19 +3,19 @@
 class Image
 {
 private:
-	HDC hMemDC;		
-	HBITMAP hBit;	
-	HBITMAP hOBit;	
+	HDC m_hMemDC;		
+	HBITMAP m_hBitMap;	
+	HBITMAP m_hOBitMap;	
 	SIZE m_size;
 
 public:
 	Image();
 	~Image();
 
-	void init(HDC hdc);
-	void render(HDC hdc, int x, int y, int cx, int cy);
+	void init(HDC _hdc, string _str);
+	void render(HDC hdc, int x, int y);
 	void release();
 
-	SIZE getSize(){return m_size}
+	SIZE getSize() { return m_size; }
 };
 

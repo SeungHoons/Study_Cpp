@@ -2,7 +2,7 @@
 #include "Scene.h"
 #include "MainScene.h"
 #include "MenuScene.h"
-
+#include "ResManager.h"
 
 SceneManager::SceneManager()
 {
@@ -15,6 +15,7 @@ SceneManager::~SceneManager()
 
 void SceneManager::init(HWND _hWnd)
 {
+	ResManager::getSingleton()->init(GetDC(_hWnd));
 	//m_pNowScene = new MenuScene();		//메뉴 만들면 
 	m_hWnd = _hWnd;
 	m_pNowScene = new MainScene();

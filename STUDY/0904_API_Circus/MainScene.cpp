@@ -42,7 +42,7 @@ void MainScene::render(HDC _hdc)
 	}
 
 	//땅불 엔드포인트
-	for()
+	//for()
 	{
 
 	}

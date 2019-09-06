@@ -2,6 +2,7 @@
 #include "Scene.h"
 
 class Object;
+class Tile;
 class MainScene : public Scene
 {
 	HWND m_hWnd;
