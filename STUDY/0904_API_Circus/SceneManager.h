@@ -13,6 +13,7 @@ class Scene;
 class SceneManager : public singletonBase<SceneManager>
 {
 private:
+	HDC m_resouceMemDC;
 	HWND m_hWnd;
 	Scene* m_pNowScene;
 	SCENE_STATE m_eNowSceneState;
@@ -24,10 +25,10 @@ public:
 	SceneManager();
 	~SceneManager();
 
-	void init(HWND _hWnd);
+	void init(HDC _hdc, HWND _hWnd);
 	void update();
 	void render(HDC _hdc);
-	void input(WPARAM _wParam);
+	void input(UINT _iMessage, WPARAM _wParam);
 
 	void freeInst();
 	void sceneChange(SCENE_STATE _state);

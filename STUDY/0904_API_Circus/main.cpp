@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include "SceneManager.h"
+#include "ResManager.h"
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 HINSTANCE g_hInst;
 LPCTSTR lpszClass = TEXT("CIRCUS_ copyright _ Hoons");
@@ -23,8 +24,11 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstace, LPSTR lpszCmpP
 	WndClass.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
 	RegisterClass(&WndClass);
 
+	//hWnd = CreateWindow(lpszClass, lpszClass, WS_OVERLAPPEDWINDOW,
+	//	CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+	//	NULL, (HMENU)NULL, hInstance, NULL);
 	hWnd = CreateWindow(lpszClass, lpszClass, WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+		CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
 		NULL, (HMENU)NULL, hInstance, NULL);
 	ShowWindow(hWnd, nCmdShow);
 
@@ -45,7 +49,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	switch (iMessage)
 	{
 	case WM_CREATE:
-		SceneManager::getSingleton()->init(hWnd);
+		//콘솔 디버깅 사용을 위한 셋팅
+		AllocConsole();
+		freopen("CONOUT$", "wt", stdout);
+		/////////////////////////////////////
+		hdc = GetDC(hWnd);
+		ResManager::getSingleton()->init(hdc);
+
+		SceneManager::getSingleton()->init(hdc, hWnd);
 
 		SetTimer(hWnd, 1, 10, NULL);
 		return 0;
@@ -54,18 +65,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		SceneManager::getSingleton()->update();
 		//타이머가 엄청 빠르니까 출력하는것도 cpu 최대치로 출력할꺼임 프레임 제한 걸어주는거 생각해보기
 		return 0;
+	case WM_KEYUP:
 	case WM_KEYDOWN:
-		SceneManager::getSingleton()->input(wParam);
+		SceneManager::getSingleton()->input(iMessage ,wParam);
+		//SceneManager::getSingleton()->
 		return 0;
-	//case WM_LBUTTONDOWN:
-	//	//x = LOWORD(lParam);
-	//	//y = HIWORD(lParam);
-	//	//bNowDraw = TRUE;
-	//	return 0;
-	//case WM_MOUSEMOVE:
-	//	return 0;
-	//case WM_LBUTTONUP:
-	//	return 0;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		SceneManager::getSingleton()->render(hdc);
@@ -75,6 +79,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		SceneManager::getSingleton()->freeInst();
 		SceneManager::getSingleton()->releaseSingleton();
+		FreeConsole();
 		PostQuitMessage(0);
 		return 0;
 	}

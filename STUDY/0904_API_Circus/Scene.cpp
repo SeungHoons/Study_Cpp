@@ -11,11 +11,11 @@ Scene::~Scene()
 {
 }
 
-void Scene::init(HWND _hWnd)
+void Scene::init(HDC _hdc, HWND _hWnd)
 {
 }
 
-void Scene::input(WPARAM _wParam)
+void Scene::input(UINT _iMessage, WPARAM _wParam)
 {
 }
 

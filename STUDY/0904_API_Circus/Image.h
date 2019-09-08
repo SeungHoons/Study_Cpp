@@ -14,6 +14,7 @@ public:
 
 	void init(HDC _hdc, string _str);
 	void render(HDC hdc, int x, int y);
+	void render(HDC hdc, int x, int y, float multiply);
 	void release();
 
 	SIZE getSize() { return m_size; }

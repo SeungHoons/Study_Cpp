@@ -13,8 +13,13 @@ ResManager::~ResManager()
 void ResManager::init(HDC _hdc)
 {
 	m_pVecBitmap.resize(FILE_NAME_END);
+	for (int i = 0; i < m_pVecBitmap.size(); i++)
+	{
+		m_pVecBitmap[i] = new Image();
+	}
 
 	m_pVecBitmap[FILE_BACK]->init(_hdc, "./Resource/back.bmp");
+	m_pVecBitmap[FILE_BACK_DARK]->init(_hdc, "./Resource/back_dark.bmp");
 	m_pVecBitmap[FILE_BACK_DEKO]->init(_hdc, "./Resource/back_deco.bmp");
 	m_pVecBitmap[FILE_BACK_NORMAL]->init(_hdc, "./Resource/back_normal.bmp");
 	m_pVecBitmap[FILE_BACK_NORMAL2]->init(_hdc, "./Resource/back_normal2.bmp");
@@ -23,7 +28,7 @@ void ResManager::init(HDC _hdc)
 	m_pVecBitmap[FILE_CHARACTER_IDLE_0]->init(_hdc, "./Resource/player0.bmp");
 	m_pVecBitmap[FILE_CHARACTER_IDLE_1]->init(_hdc, "./Resource/player1.bmp");
 	m_pVecBitmap[FILE_CHARACTER_IDLE_2]->init(_hdc, "./Resource/player2.bmp");
-	m_pVecBitmap[FILE_CHARACTER_WIN]->init(_hdc, "./Resource/win.bmp");
+	m_pVecBitmap[FILE_CHARACTER_WIN1]->init(_hdc, "./Resource/win.bmp");
 	m_pVecBitmap[FILE_CHARACTER_WIN2]->init(_hdc, "./Resource/win2.bmp");
 	m_pVecBitmap[FILE_OBJECT_END]->init(_hdc, "./Resource/end.bmp");
 	m_pVecBitmap[FILE_OBJECT_CASH]->init(_hdc, "./Resource/cash.bmp");
@@ -39,9 +44,9 @@ void ResManager::init(HDC _hdc)
 	m_pVecBitmap[FILE_ENEMY_RING_HALF2]->init(_hdc, "./Resource/enemy_1f.bmp");
 }
 
-HBITMAP ResManager::getBitMap(FILE_NAME fileName)
+Image* ResManager::getBitMap(FILE_NAME fileName)
 {
-	return HBITMAP();
+	return m_pVecBitmap[fileName];
 }
 
 void ResManager::release()

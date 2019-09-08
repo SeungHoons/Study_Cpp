@@ -1,6 +1,6 @@
 #include "Image.h"
 #include<cassert>
-
+#include <utility>
 
 Image::Image()
 {
@@ -32,6 +32,11 @@ void Image::init(HDC _hdc , string _str)
 void Image::render(HDC hdc, int x, int y)
 {
 	BitBlt(hdc, x, y, m_size.cx, m_size.cy, m_hMemDC, 0, 0, SRCCOPY);
+}
+
+void Image::render(HDC hdc, int x, int y, float multiply)
+{
+	TransparentBlt(hdc, x, y, m_size.cx * multiply, m_size.cy * multiply, m_hMemDC, 0, 0, m_size.cx, m_size.cy, RGB(255, 0, 255));
 }
 
 void Image::release()

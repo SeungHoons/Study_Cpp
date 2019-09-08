@@ -11,8 +11,10 @@ public:
 	~TileManager();
 	
 
-	void init();
+	void init(int _num);
 	void update();
-	void 
+	void render(HDC _hdc);
+
+	void setPosition(int _x);
 };
 

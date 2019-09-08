@@ -6,8 +6,8 @@ class Object
 {
 protected:
 	POINT m_position;
-	Image* m_image;
-
+	Image* m_pImage;
+	bool m_active;			//활성화 되어있는가.
 public:
 	Object();
 	~Object();
