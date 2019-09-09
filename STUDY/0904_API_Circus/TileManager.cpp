@@ -20,7 +20,7 @@ void TileManager::init(int _num)
 
 	for (int i = 0; i < _num; i++)
 	{
-		if (i % (_num / 2) == 0)
+		if (i % (10) == 0)
 		{
 			m_vecTile[i]->init((i*TILE_WIDTH * IMAGE_SIZE_MULTIFLY), true);
 		}
@@ -31,6 +31,10 @@ void TileManager::init(int _num)
 
 void TileManager::update()
 {
+	for (auto iter = m_vecTile.begin(); iter != m_vecTile.end(); iter++)
+	{
+		(*iter)->update();
+	}
 }
 
 void TileManager::render(HDC _hdc)
@@ -45,6 +49,20 @@ void TileManager::setPosition(int _x)
 {
 	for (int i = 0; i < m_vecTile.size(); i++)
 	{
-		m_vecTile[i]->setPosition(_x);
+		m_vecTile[i]->setCameraPosition(_x);
+	}
+	
+
+}
+
+void TileManager::pullingTile()
+{
+	for (auto iter = m_vecTile.begin(); iter != m_vecTile.end(); iter++)
+	{
+		if ((*iter)->getAactive() == true)
+			continue;
+		//(*iter)->setPosition();
+
+		(*iter)->setActiveTrue();
 	}
 }

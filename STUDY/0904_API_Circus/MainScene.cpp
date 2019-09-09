@@ -29,7 +29,7 @@ void MainScene::init(HDC _hdc, HWND _hWnd)
 	SelectObject(m_memDC, m_memBitmap);
 
 	m_pTileManager = new TileManager();
-	m_pTileManager->init((CLIENT_WIDTH / TILE_WIDTH) + 2);
+	m_pTileManager->init(100);
 	m_pImageDark = ResManager::getSingleton()->getBitMap(FILE_BACK_DARK);
 
 	//Ä³¸¯ÅÍ
@@ -62,6 +62,8 @@ void MainScene::input(UINT iMessage, WPARAM _wParam)
 			m_pCharacter->setState(CHARACTER_MOVE);
 			break;
 		case VK_SPACE:
+			m_pCharacter->jump();
+			m_pCharacter->setState(CHARACTER_JUMP);
 			break;
 		default:
 			break;
@@ -97,6 +99,7 @@ void MainScene::update()
 	m_pCharacter->update();
 	setCamera();
 	m_pTileManager->setPosition(m_pCharacter->getPositionX());
+	m_pTileManager->update();
 }
 
 void MainScene::render(HDC _hdc)

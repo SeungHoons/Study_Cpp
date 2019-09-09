@@ -16,5 +16,6 @@ public:
 	void render(HDC _hdc);
 
 	void setPosition(int _x);
+	void pullingTile();
 };
 

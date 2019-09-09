@@ -25,7 +25,12 @@ private:
 	Image* m_pDIeImage;
 	CHARACTER_STATE m_eState;
 	CHARACTER_DIRECTION m_eDirection;
-	int score;
+
+	DWORD m_currentTime;
+	int m_score;
+	int m_iAniFrontIndex;
+	int m_iAniBackIndex;
+
 public:
 	Character();
 	~Character();
@@ -34,6 +39,10 @@ public:
 	virtual void update();
 	virtual void render(HDC _hdc);
 	void render(HDC _hdc, int _x);
+	void animation();
+	void jump();
+
+	
 
 	 void setDirection(CHARACTER_DIRECTION _dir) { m_eDirection = _dir; }
 	 void setState(CHARACTER_STATE _state) { m_eState = _state; }

@@ -17,5 +17,10 @@ public:
 	virtual void render(HDC _hdc);
 
 	void setPosition(int _x);
+	void setCameraPosition(int _x);
+
+	//int getPositonX() { return m_position.x; }
+	bool getAactive() { return m_bActive; }
+	void setActiveTrue() { m_bActive = true; }
 };
 

@@ -12,3 +12,8 @@ using namespace std;
 #define IMAGE_SIZE_MULTIFLY 1.8f
 
 #define CHARACTER_CONST_POINT_X 100
+
+#define PIE 3.14592
+
+#define RADIAN PIE/180
+
