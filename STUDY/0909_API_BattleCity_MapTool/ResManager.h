@@ -28,15 +28,23 @@ class Bitmap;
 class ResManager
 {
 private:
+	static ResManager* Inst;
 	Bitmap* m_image;
 	vector<Bitmap*> m_pVecBitmap;
-public:
+
 	ResManager();
 	~ResManager();
+public:
+	static ResManager* getInst()
+	{
+		if (!Inst)Inst = new ResManager;
+		return Inst;
+	}
+	void release();
+
 
 	void init(HDC _hdc);
 	Bitmap* getBitMap(RES_FILE_NAME fileName);
-	void release();
 
 	void fileLoad(HWND _hWnd);
 	void fileSave(HWND _hWnd);

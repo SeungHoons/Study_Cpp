@@ -1,8 +1,14 @@
 #include <Windows.h>
+#include <assert.h>
+
 #include <vector>
 #include <math.h>
 #include <utility>
 #include "ResManager.h"
+#include "Bitmap.h"
+#include "MapTool.h"
+
+using namespace std;
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 HINSTANCE g_hInst;
 LPCTSTR lpszClass = TEXT("Maptool Of BattleCity_ copyright _ Hoons");
@@ -39,8 +45,13 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstace, LPSTR lpszCmpP
 }
 #define ID_EDIT 100
 HWND hEdit;
-ResManager g_resManager;
-RECT g_mainScreenRect;
+MapTool g_mapTool;
+
+HDC g_MemDC[2];
+HBITMAP g_BitMap[2];
+HBITMAP g_OldBitMap[2];
+
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	HDC hdc;
@@ -52,10 +63,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 		hdc = GetDC(hWnd);
 		//hEdit = CreateWindow(TEXT("edit"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 10, 10, 200, 25, hWnd, (HMENU)ID_EDIT, g_hInst, NULL);
-		g_mainScreenRect = { 0,0, 429,325 };
-		g_resManager.init(hdc);
-		CreateWindow(TEXT("button"), TEXT("SAVE"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 700, 620, 100, 25, hWnd, (HMENU)0, g_hInst, NULL);
-		CreateWindow(TEXT("button"), TEXT("LOAD"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 850, 620, 100, 25, hWnd, (HMENU)1, g_hInst, NULL);
+
+		ResManager::getInst()->init(hdc);
+		g_mapTool.init(hWnd, g_hInst);
+
+		g_MemDC[0] = CreateCompatibleDC(hdc);
+		g_BitMap[0] = CreateCompatibleBitmap(hdc, 1024, 768);
+		g_OldBitMap[0] = (HBITMAP)SelectObject(g_MemDC[0], g_BitMap[0]);
+
+		g_MemDC[1] = CreateCompatibleDC(g_MemDC[0]);
+		g_BitMap[1] = (HBITMAP)LoadImage(NULL, "./Resource/Back_Dark.bmp", IMAGE_BITMAP, 0,0, LR_CREATEDIBSECTION | LR_DEFAULTSIZE | LR_LOADFROMFILE);
+		g_OldBitMap[1] = (HBITMAP)SelectObject(g_MemDC[1], g_BitMap[1]);
+
+		if(g_BitMap[1] == NULL)
+		{
+			assert(0);
+		}
+
 		return 0;
 
 	case WM_COMMAND:
@@ -71,23 +95,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		//}
 		//return 0;
 
-		switch (LOWORD(wParam))
-		{
-		case 0:
-			g_resManager.fileSave(hWnd);
-			//MessageBox(hWnd, TEXT("First Button Clicked"), TEXT("Button"), MB_OK);
-			return 0;
-		case 1:
-			g_resManager.fileLoad(hWnd);
-			//MessageBox(hWnd, TEXT("First Button Clicked"), TEXT("Button"), MB_OK);
-			return 0;
-		}
+		g_mapTool.InputButton(wParam);
+		
 		return 0;
 
 
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
-		Rectangle(hdc, g_mainScreenRect.left, g_mainScreenRect.top, g_mainScreenRect.right, g_mainScreenRect.bottom);
+		//backGround 그려주기//////////////////////////////////////////////////////////////////////////////////////
+		BitBlt(g_MemDC[0], 0, 0, 1024, 768, g_MemDC[1], 0, 0, SRCCOPY);
+		TransparentBlt(g_MemDC[0], 0, 0, 500, 500, g_MemDC[1], 0, 0, 429, 326, RGB(255, 0, 255));
+		//Rectangle(g_MemDC[0], g_buttonRect.left, g_buttonRect.top, g_buttonRect.right, g_buttonRect.bottom);
+		//////////////////////////////////////////////////////////////////////////////////////
+
+		//객체 그려주기
+		g_mapTool.render(g_MemDC[0]);
+
+
+		//빽버퍼 윈도우 해당 버퍼에 그려주기
+		BitBlt(hdc, 0, 0, 1024, 768, g_MemDC[0], 0, 0, SRCCOPY);
 		EndPaint(hWnd, &ps);
 		return 0;
 

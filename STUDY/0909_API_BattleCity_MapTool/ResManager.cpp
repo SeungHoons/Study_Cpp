@@ -2,7 +2,7 @@
 #include <string>
 #include "Bitmap.h"
 #include "macro.h"
-
+ResManager* ResManager::Inst= nullptr;
 
 ResManager::ResManager()
 {
@@ -17,7 +17,8 @@ ResManager::~ResManager()
 void ResManager::init(HDC _hdc)
 {
 	string str;
-	char tempChar[2];
+	char tempChar[128];
+
 
 	for (int i = 0; i < FILE_NAME_END; i++)
 	{
@@ -43,8 +44,6 @@ void ResManager::init(HDC _hdc)
 		m_pVecBitmap[i]->init(_hdc, str.c_str());
 	}
 	m_pVecBitmap[FILE_TANK_RIGHT]->init(_hdc, "./Resource/tank_right_00.bmp");
-	memset(tempChar, 0, 256);
-	//str.clear();
 }
 
 Bitmap * ResManager::getBitMap(RES_FILE_NAME fileName)
@@ -57,6 +56,11 @@ void ResManager::release()
 	for (int i = 0; i < m_pVecBitmap.size(); i++)
 	{
 		SAFE_DELETE(m_pVecBitmap[i]);
+	}
+	if (Inst)
+	{
+		delete Inst;
+		Inst = nullptr;
 	}
 }
 
