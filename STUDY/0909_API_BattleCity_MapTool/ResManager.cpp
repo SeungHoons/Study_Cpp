@@ -41,9 +41,9 @@ void ResManager::init(HDC _hdc)
 			str = str + tempChar;
 			str = str + ".bmp";
 		}
-		m_pVecBitmap[i]->init(_hdc, str.c_str());
+		m_pVecBitmap[i]->init(_hdc, str.c_str(), i);
 	}
-	m_pVecBitmap[FILE_TANK_RIGHT]->init(_hdc, "./Resource/tank_right_00.bmp");
+	m_pVecBitmap[FILE_TANK_RIGHT]->init(_hdc, "./Resource/tank_right_00.bmp", FILE_TANK_RIGHT);
 }
 
 Bitmap * ResManager::getBitMap(RES_FILE_NAME fileName)
@@ -84,6 +84,13 @@ void ResManager::fileLoad(HWND _hWnd)
 		sprintf(str, "%s 파일을 선택했습니다. ", OFN.lpstrFile);
 		MessageBox(_hWnd, str, "파일열기 성공", MB_OK);
 	}
+	else
+	{
+		MessageBox(_hWnd, ("파일 오픈 에러입니다."), ("파일열기실패"), MB_OK);
+		return;
+	}
+
+	
 }
 
 void ResManager::fileSave(HWND _hWnd)
@@ -105,5 +112,10 @@ void ResManager::fileSave(HWND _hWnd)
 	{
 		sprintf(str, "%s 파일을 저장했습니다. ", OFN.lpstrFile);
 		MessageBox(_hWnd, str, "파일열기 성공", MB_OK);
+	}
+	else
+	{
+		MessageBox(_hWnd, ("파일 오픈 에러입니다."), ("파일열기실패"), MB_OK);
+		return;
 	}
 }

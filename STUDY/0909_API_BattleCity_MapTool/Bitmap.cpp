@@ -11,7 +11,7 @@ Bitmap::~Bitmap()
 {
 }
 
-void Bitmap::init(HDC _hdc, string _str)
+void Bitmap::init(HDC _hdc, string _str, int _index)
 {
 	m_hMemDC = CreateCompatibleDC(_hdc);
 	m_hBitMap = (HBITMAP)LoadImage(NULL, _str.c_str(), IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION | LR_DEFAULTSIZE | LR_LOADFROMFILE);
@@ -25,6 +25,7 @@ void Bitmap::init(HDC _hdc, string _str)
 	GetObject(m_hBitMap, sizeof(bitmap), &bitmap);
 	m_size.cx = bitmap.bmWidth;
 	m_size.cy = bitmap.bmHeight;
+	m_index = _index;
 }
 
 void Bitmap::render(HDC hdc, int x, int y)

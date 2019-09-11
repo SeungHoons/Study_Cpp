@@ -57,11 +57,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	HDC hdc;
 	PAINTSTRUCT ps;
 	TCHAR str[128];
+	int x, y;
 
 	switch (iMessage)
 	{
 	case WM_CREATE:
 		hdc = GetDC(hWnd);
+		SetTimer(hWnd, 1, 10, NULL);
 		//hEdit = CreateWindow(TEXT("edit"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 10, 10, 200, 25, hWnd, (HMENU)ID_EDIT, g_hInst, NULL);
 
 		ResManager::getInst()->init(hdc);
@@ -72,10 +74,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		g_OldBitMap[0] = (HBITMAP)SelectObject(g_MemDC[0], g_BitMap[0]);
 
 		g_MemDC[1] = CreateCompatibleDC(g_MemDC[0]);
-		g_BitMap[1] = (HBITMAP)LoadImage(NULL, "./Resource/Back_Dark.bmp", IMAGE_BITMAP, 0,0, LR_CREATEDIBSECTION | LR_DEFAULTSIZE | LR_LOADFROMFILE);
+		g_BitMap[1] = (HBITMAP)LoadImage(NULL, "./Resource/Back_Dark.bmp", IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION | LR_DEFAULTSIZE | LR_LOADFROMFILE);
 		g_OldBitMap[1] = (HBITMAP)SelectObject(g_MemDC[1], g_BitMap[1]);
 
-		if(g_BitMap[1] == NULL)
+		if (g_BitMap[1] == NULL)
 		{
 			assert(0);
 		}
@@ -94,17 +96,37 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		//	}
 		//}
 		//return 0;
-
+		AllocConsole();
+		freopen("CONOUT$", "wt", stdout);
 		g_mapTool.InputButton(wParam);
-		
+
+		return 0;
+	case WM_TIMER:
+		switch (wParam)
+		{
+		case 1:
+			g_mapTool.update();
+			return 0;
+		default:
+			break;
+		}
 		return 0;
 
-
+	case WM_LBUTTONDOWN:
+		x = LOWORD(lParam);
+		y = HIWORD(lParam);
+		g_mapTool.checkRect(x, y);
+		return 0;
+	case WM_MOUSEMOVE:
+		x = LOWORD(lParam);
+		y = HIWORD(lParam);
+		//g_mapTool.checkRect(x, y);
+		return 0;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		//backGround 그려주기//////////////////////////////////////////////////////////////////////////////////////
 		BitBlt(g_MemDC[0], 0, 0, 1024, 768, g_MemDC[1], 0, 0, SRCCOPY);
-		TransparentBlt(g_MemDC[0], 0, 0, 500, 500, g_MemDC[1], 0, 0, 429, 326, RGB(255, 0, 255));
+		TransparentBlt(g_MemDC[0], 0, 0, 520, 520, g_MemDC[1], 0, 0, 429, 326, RGB(255, 0, 255));
 		//Rectangle(g_MemDC[0], g_buttonRect.left, g_buttonRect.top, g_buttonRect.right, g_buttonRect.bottom);
 		//////////////////////////////////////////////////////////////////////////////////////
 
@@ -118,6 +140,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		return 0;
 
 	case WM_DESTROY:
+		KillTimer(hWnd, 1);
 		PostQuitMessage(0);
 		return 0;
 	}
