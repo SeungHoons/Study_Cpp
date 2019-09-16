@@ -30,7 +30,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -92,6 +92,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>msimg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -139,7 +140,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BitMap.cpp" />
+    <ClCompile Include="FrameWork.cpp" />
+    <ClCompile Include="macro.h" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ResManager.cpp" />
+    <ClCompile Include="Tile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BitMap.h" />
+    <ClInclude Include="FrameWork.h" />
+    <ClInclude Include="Global.h" />
+    <ClInclude Include="MapManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="ResManager.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,5 +18,49 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ResManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BitMap.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="macro.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FrameWork.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ResManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BitMap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
