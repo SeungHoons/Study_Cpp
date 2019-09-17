@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BitMap.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="FrameWork.cpp" />
     <ClCompile Include="macro.h" />
     <ClCompile Include="main.cpp" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BitMap.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="FrameWork.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="MapManager.h" />

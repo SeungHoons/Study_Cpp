@@ -12,10 +12,12 @@ using namespace std;
 #include "macro.h"
 
 //define
+#define FPS 60
 #define MAP_TILE_WIDHT_HEIGHT 13
 #define TILE_SIZE 40
 #define TILE_START_POINT_X 50
 #define TILE_START_POINT_Y 25
+#define BULLET_NUM 3
 
 //enum
 enum DIRECTION
@@ -24,5 +26,11 @@ enum DIRECTION
 	DIR_DOWN,
 	DIR_LEFT,
 	DIR_RIGHT
+};
+
+struct F_POSITION
+{
+	float x;
+	float y;
 };
 

@@ -22,7 +22,7 @@ void MapManager::init()
 		{
 			index = (i * MAP_TILE_WIDHT_HEIGHT) + j;
 			m_vecTile.push_back(new Tile());
-			RECT rc = { j*TILE_SIZE,i*TILE_SIZE, (j + 1)*TILE_SIZE, (i + 1)*TILE_SIZE };
+			RECT rc = { (TILE_START_POINT_X)+(j*TILE_SIZE),(i*TILE_SIZE)+(TILE_START_POINT_Y), (j + 1)*TILE_SIZE, (i + 1)*TILE_SIZE };
 
 			m_vecTile[index]->init(ResManager::getInst()->getLoadBitMap(index),&rc);
 		}

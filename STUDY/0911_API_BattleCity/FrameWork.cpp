@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "ResManager.h"
 #include "MapManager.h"
+#include "Player.h"
 
 FrameWork::FrameWork()
 {
@@ -30,6 +31,8 @@ void FrameWork::Init(HWND hWnd)
 
 	m_pMapManger = new MapManager;
 	m_pMapManger->init();
+	m_pPlayer = new Player;
+	m_pPlayer->init();
 	
 	m_hMemDC[0] = CreateCompatibleDC(hdc);
 	m_hBitmap[0] = CreateCompatibleBitmap(hdc, 1024, 768);
@@ -75,9 +78,10 @@ void FrameWork::Update()
 	std::chrono::duration<float> sec = std::chrono::system_clock::now() - m_LastTime;
 	/*if (sec.count() < (1 / FPS))
 		return;*/
-
 	m_fElapseTime = sec.count();
 	m_LastTime = std::chrono::system_clock::now();
+
+	m_pPlayer->update();
 
 	OperateInput();
 
@@ -87,37 +91,23 @@ void FrameWork::Update()
 void FrameWork::OperateInput()
 {
 	if (GetKeyState(VK_LEFT) & 0x8000)
-		Player_x -= 500 * m_fElapseTime;
+		m_pPlayer->isMove(DIR_LEFT);
+	
+		//Player_x -= 500 * m_fElapseTime;
 	if (GetKeyState(VK_RIGHT) & 0x8000)
-		Player_x += 500 * m_fElapseTime;
+		m_pPlayer->isMove(DIR_RIGHT);
+
 	if (GetKeyState(VK_UP) & 0x8000)
-		Player_y -= 500 * m_fElapseTime;
+		m_pPlayer->isMove(DIR_UP);
+
 	if (GetKeyState(VK_DOWN) & 0x8000)
-		Player_y += 500 * m_fElapseTime;
+		m_pPlayer->isMove(DIR_DOWN);
+
 
 	if (GetKeyState(VK_SPACE) & 0x8000)
 	{
-		if (m_bJump == false)
-		{
-			// 키 다운
-			m_bJump = true;
-
-		}
-		else
-		{
-			//누르고 있을때
-		}
+		m_pPlayer->fire();
 	}
-	else
-	{
-		if (m_bJump)
-		{
-			//키 업
-		}
-		m_bJump = false;
-
-	}
-
 }
 
 void FrameWork::Render()
@@ -131,7 +121,7 @@ void FrameWork::Render()
 	///////////////////////////////////
 	
 	m_pMapManger->render(m_hMemDC[0]);
-
+	m_pPlayer->render(m_hMemDC[0]);
 
 	BitBlt(hdc, 0, 0, 700, 600, m_hMemDC[0], 0, 0, SRCCOPY);
 

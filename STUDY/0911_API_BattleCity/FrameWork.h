@@ -10,6 +10,7 @@ enum STATE
 	JUMP
 };
 
+class Player;
 class MapManager;
 class FrameWork
 {
@@ -23,6 +24,7 @@ private:
 	HBITMAP		m_hOld[3];
 	
 	MapManager* m_pMapManger;
+	Player*		m_pPlayer;
 
 	float		Player_x;
 	float		Player_y;

@@ -66,7 +66,10 @@ void ResManager::init(HDC _hdc)
 	m_pVecBitmap[FILE_TANK_RIGHT_00 ]->init(_hdc, str + "tank_right_00.bmp");
 	m_pVecBitmap[FILE_TANK_RIGHT_01]->init(_hdc, str + "tank_right_01.bmp");
 
-	m_pVecBitmap[FILE_MISSILE_00 ]->init(_hdc, str + "missile_00.bmp");
+	m_pVecBitmap[FILE_MISSILE_DOWN]->init(_hdc, str + "missile_down.bmp");
+	m_pVecBitmap[FILE_MISSILE_UP]->init(_hdc, str + "missile_up.bmp");
+	m_pVecBitmap[FILE_MISSILE_LEFT]->init(_hdc, str + "missile_left.bmp");
+	m_pVecBitmap[FILE_MISSILE_RIGHT]->init(_hdc, str + "missile_right.bmp");
 	m_pVecBitmap[FINE_EXPLOSION_00 ]->init(_hdc, str + "explosion_00.bmp");
 	m_pVecBitmap[FILE_EXPLOSION_01 ]->init(_hdc, str + "explosion_01.bmp");
 	m_pVecBitmap[FILE_EXPLOSION_02 ]->init(_hdc, str + "explosion_02.bmp");
