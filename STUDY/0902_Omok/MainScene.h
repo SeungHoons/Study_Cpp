@@ -1,8 +1,16 @@
 #pragma once
 #include "Scene.h"
+
+class BlockManager;
 class MainScene :
 	public Scene
 {
+private:
+	HDC				m_backBuffer;
+	HBITMAP m_hBitmap;
+	HBITMAP m_hOld;
+
+	BlockManager* m_pBlockManager;
 public:
 	MainScene();
 	~MainScene();

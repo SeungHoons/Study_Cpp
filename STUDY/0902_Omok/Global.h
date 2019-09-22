@@ -13,7 +13,7 @@ using namespace std;
 #include "PACKET_HEADER.h"
 
 //define
-#define FPS 60
+#define FPS 60.0f
 #define MAP_TILE_WIDHT_HEIGHT 13
 #define TILE_SIZE 40
 #define TILE_START_POINT_X 50

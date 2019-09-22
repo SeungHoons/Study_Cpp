@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "SceneManager.h"
+#include "ResManager.h"
 
 GameFrameWork::GameFrameWork()
 {
@@ -17,9 +18,9 @@ void GameFrameWork::Init(HWND hWnd)
 	m_hWnd = hWnd;
 	HDC hdc = GetDC(hWnd);
 
+	ResManager::getInst()->init(hdc);
 	//씬매니저 초기화
 	SceneManager::getSingleton()->init(hdc, m_hWnd);
-
 
 	/*m_hMemDC[0] = CreateCompatibleDC(hdc);
 	m_hBitmap[0] = CreateCompatibleBitmap(hdc, 1024, 768);
@@ -47,7 +48,7 @@ void GameFrameWork::Release()
 		DeleteObject(m_hBitmap[i]);
 		DeleteDC(m_hMemDC[i]);
 	}
-	
+	SceneManager::getSingleton()->freeInst();
 }
 
 #define PI 3.141592f
@@ -115,10 +116,7 @@ void GameFrameWork::Render()
 {
 	HDC hdc = GetDC(m_hWnd);
 
-	BitBlt(m_hMemDC[0], 0, 0, 1024, 768, m_hMemDC[1], 0, 0, SRCCOPY);
-	TransparentBlt(m_hMemDC[0], (int)Player_x, (int)Player_y, 240, 192, m_hMemDC[2], 0, 0, 240, 192, RGB(255, 0, 255));
-
-	BitBlt(hdc, 0, 0, 1024, 768, m_hMemDC[0], 0, 0, SRCCOPY);
+	SceneManager::getSingleton()->render(hdc);
 
 	ReleaseDC(m_hWnd, hdc);
 }

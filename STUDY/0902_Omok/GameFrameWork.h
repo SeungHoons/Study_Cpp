@@ -3,7 +3,6 @@
 #include <chrono>
 using namespace std;
 
-#define FPS			60.0f
 
 enum STATE
 {

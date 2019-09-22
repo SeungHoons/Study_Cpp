@@ -1,5 +1,10 @@
 #pragma once
 
+//디파인
+#define CHECKER_BOARD_XY 19
+
+
+//이넘
 enum SCENE_STATE
 {
 	SCENE_MENU,
