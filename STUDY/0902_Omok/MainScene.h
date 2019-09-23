@@ -6,6 +6,8 @@ class MainScene :
 	public Scene
 {
 private:
+	bool m_clicked;
+	HWND m_hWnd;
 	HDC				m_backBuffer;
 	HBITMAP m_hBitmap;
 	HBITMAP m_hOld;

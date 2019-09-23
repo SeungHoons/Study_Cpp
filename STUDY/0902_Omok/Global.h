@@ -15,10 +15,9 @@ using namespace std;
 //define
 #define FPS 60.0f
 #define MAP_TILE_WIDHT_HEIGHT 13
-#define TILE_SIZE 40
-#define TILE_START_POINT_X 50
-#define TILE_START_POINT_Y 25
-#define BULLET_NUM 3
+#define BLCOK_START_POINT_X 12
+#define BLOCK_START_POINT_Y 12
+#define STONE_SIZE 30
 
 //enum
 enum DIRECTION
