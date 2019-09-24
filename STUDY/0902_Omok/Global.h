@@ -19,14 +19,7 @@ using namespace std;
 #define BLOCK_START_POINT_Y 12
 #define STONE_SIZE 30
 
-//enum
-enum DIRECTION
-{
-	DIR_UP,
-	DIR_DOWN,
-	DIR_LEFT,
-	DIR_RIGHT
-};
+
 
 struct F_POSITION
 {

@@ -31,7 +31,7 @@ void BlockManager::init()
 
 			/*m_vecBlock.push_back(new Block());
 			m_vecBlock.back()->init((tem_x) + BLCOK_START_POINT_X, (tem_y)+BLOCK_START_POINT_Y);*/
-			
+
 		}
 	}
 }
@@ -42,7 +42,7 @@ void BlockManager::update()
 
 void BlockManager::render(HDC _hdc)
 {
-	m_pBitMap->render(_hdc,0,0);
+	m_pBitMap->render(_hdc, 0, 0);
 	for (int i = 0; i < CHECKER_BOARD_XY; i++)
 	{
 		for (int j = 0; j < CHECKER_BOARD_XY; j++)
@@ -88,7 +88,6 @@ void BlockManager::checkCollition(POINT _pt)
 	//		{
 	//			m_vecBlock[i]->setStone(m_nowPlayer);
 	//			checkFiveStone(i);
-
 	//			if (m_nowPlayer == BLACK_STONE)
 	//				m_nowPlayer = WHITE_STONE;
 	//			else
@@ -100,75 +99,68 @@ void BlockManager::checkCollition(POINT _pt)
 
 void BlockManager::checkFiveStone(int _y, int _x)
 {
-	int count = 0;
-	int minX = _x - 4;
-	int maxX = _x + 5;
-	int minY = _y - 4;
-	int maxY = _y + 5;
+	int count = 1;
+	int x = _x;
+	int y = _y;
 
-	if (minX < 0)
-		minX = 0;
-	if (maxX >= CHECKER_BOARD_XY)
-		maxX = CHECKER_BOARD_XY - 1;
-	if (minY < 0)
-		minY = 0;
-	if (maxY >= CHECKER_BOARD_XY)
-		maxY = CHECKER_BOARD_XY - 1;
 
-	bool win[4];		// 가로 세로 대각선*2
-
-	//가로
-	for (int i = minX; i < maxX; i++)
+	for (int i = 0; i < 8; i += 2)
 	{
-		if (m_pBlock[_y][i]->whatState() == m_nowPlayer)
+		x = _x;
+		y = _y;
+		int plus_x = (DIRECTION_EIGHT[(LINE_DIR)i].x);
+		int plus_y = (DIRECTION_EIGHT[(LINE_DIR)i].y);
+		while (y>0 && x > 0 && (m_pBlock[y + plus_y][x + plus_x]->whatState() == m_nowPlayer))
 		{
+			x += plus_x;
+			y += plus_y;
+		}
+		plus_x = (DIRECTION_EIGHT[(LINE_DIR)i+1].x);
+		plus_y = (DIRECTION_EIGHT[(LINE_DIR)i+1].y);
+		while ((m_pBlock[y][x]->whatState() == m_nowPlayer && x < 18 && y < 18  ))
+		{
+			y += plus_y;
+			x += plus_x;
 			count++;
 		}
-		else
-			count = 0;
-
-		if (count == 5)
-			win[0] = true;
-		if (count > 5)
-			win[0] = false;
-	}
-
-	//세로
-	for (int i = minY; i < maxY; i++)
-	{
-		if (m_pBlock[i][_x]->whatState() == m_nowPlayer)
+		//5개 체크
+		if (checkFiveAndResetCount(count))
 		{
-			count++;
+			//winPlayer()
+			break;
 		}
-		else
-			count = 0;
-
-		if (count == 5)
-			win[1] = true;
-		if (count > 5)
-			win[1] = false;
 	}
 
-	//대각선 위아래
 
+	////가로
+	//while (x > 0 && (m_pBlock[_y][x-1]->whatState() == m_nowPlayer ))
+	//{
+	//	x--;
+	//}
+	//while ((m_pBlock[_y][x++]->whatState() == m_nowPlayer && x < 18))
+	//{
+	//	count++;
+	//}
+	//checkFiveAndResetCount(count);
 
-	int i;
-	int j;
-	if()
-	for ( i= minY; i < maxY; i++)
+	////세로
+	//while (y > 0 && (m_pBlock[y - 1][_x]->whatState() == m_nowPlayer))
+	//{
+	//	y--;
+	//}
+	//while ((m_pBlock[y++][_x]->whatState() == m_nowPlayer && y < 18))
+	//{
+	//	count++;
+	//}
+	//checkFiveAndResetCount(count);
+}
+
+bool BlockManager::checkFiveAndResetCount(int& _num)
+{
+	if (_num == 5)
 	{
-		j = minX; 
-		if (m_pBlock[i][j]->whatState() == m_nowPlayer)
-		{
-			count++;
-		}
-		else
-			count = 0;
-
-		if (count == 5)
-			win[1] = true;
-		if (count > 5)
-			win[1] = false;
-		j++;
+		return true;
 	}
+	_num = 1;
+	return false;
 }

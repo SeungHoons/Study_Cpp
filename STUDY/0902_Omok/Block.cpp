@@ -44,6 +44,7 @@ bool Block::collision(POINT _mouse)
 	{
 		return true;
 	}
+	return false;
 }
 
 void Block::setStone(WHAT_BLOCK_STATE _stone)

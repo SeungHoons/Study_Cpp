@@ -16,3 +16,23 @@ enum WHAT_BLOCK_STATE
 	WHITE_STONE,
 	BLOCK_EMPTY
 };
+
+struct DIRECTION_XY
+{
+	int x;
+	int y;
+};
+
+
+
+enum LINE_DIR
+{
+	DIR_LEFT,
+	DIR_RIGHT,
+	DIR_UP,
+	DIR_DOWN,
+	DIR_LEFT_UP,
+	DIR_RIGHT_DOWN,
+	DIR_LEFT_DOWN,
+	DIR_RITHG_UP
+};
