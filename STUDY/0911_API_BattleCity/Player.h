@@ -16,6 +16,10 @@ private:
 	float m_speed;
 	DIRECTION m_dir;
 	bool m_bIsMove;
+	RECT m_rectForCollitionCheck;
+
+	//이동값 저정
+	float m_saveMove;
 
 	vector<Bullet*> m_vecBullet;
 	float m_fFireTime;
@@ -29,5 +33,15 @@ public:
 
 	void isMove(DIRECTION _dir);
 	void fire();
+	
+	//맵과 콜리전 체크
+	RECT* getRect();
+	void backPosition();
+
+	//총알 콜리전 체크
+	bool isBulletActive(int _index);
+	RECT* getRectBullet(int _index);
+	void unActiveBullet(int _index);
+	DIRECTION getBulletDirection(int _index);
 };
 

@@ -96,6 +96,26 @@ BitMap * ResManager::getLoadBitMap(int _index)
 		return m_pVecBitmap[m_vecMapLoad[_index]];
 }
 
+BitMap * ResManager::getLoadBitMap(int _index, RECT& _rc)
+{
+	if (m_vecMapLoad[_index] == -1)
+		return nullptr;
+	else
+	{
+		setCollitionBox(m_vecMapLoad[_index], _rc);
+		return m_pVecBitmap[m_vecMapLoad[_index]];
+	}
+}
+
+RES_FILE_NAME ResManager::getFileIndex(int _index)
+{
+	return (RES_FILE_NAME)m_vecMapLoad[_index];
+}
+
+void ResManager::setCollitionBox(int _index, RECT& _rc)
+{
+}
+
 void ResManager::release()
 {
 	for (int i = 0; i < m_pVecBitmap.size(); i++)

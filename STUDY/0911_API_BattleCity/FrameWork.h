@@ -26,19 +26,8 @@ private:
 	MapManager* m_pMapManger;
 	Player*		m_pPlayer;
 
-	float		Player_x;
-	float		Player_y;
-
-	bool		m_bJump;
-	//수학적으로
-	STATE		m_eState;
-	float		m_fJumpX;
-	float		m_fJumpY;
-	float		m_fCurJumpTime;
-
-	//물리적
-	float		m_fVectorX;
-	float		m_fVectorY;
+	//클릭
+	bool		m_clickedKeyD;
 public:
 	FrameWork();
 	~FrameWork();

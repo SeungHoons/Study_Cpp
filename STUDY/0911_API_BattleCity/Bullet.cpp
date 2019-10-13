@@ -41,6 +41,9 @@ void Bullet::move(float sec)
 	default:
 		break;
 	}
+	m_rect = { (int)m_fPosition.x,(int)m_fPosition.y,
+		(int)(m_fPosition.x + m_pBitMap[m_dir]->getSize().cx),
+		(int)(m_fPosition.y + m_pBitMap[m_dir]->getSize().cy) };
 
 	if (m_fPosition.x < TILE_START_POINT_X || m_fPosition.x > TILE_START_POINT_X+520)
 	{
@@ -63,4 +66,12 @@ void Bullet::fire(int _x, int _y, DIRECTION _dir)
 	m_bActive = true;
 	m_fPosition.x = _x - (m_pBitMap[m_dir]->getSize().cx) / 2;
 	m_fPosition.y = _y - (m_pBitMap[m_dir]->getSize().cy) / 2;
+	m_rect = { (int)m_fPosition.x,(int)m_fPosition.y,
+		(int)(m_fPosition.x + m_pBitMap[m_dir]->getSize().cx),
+		(int)(m_fPosition.y + m_pBitMap[m_dir]->getSize().cy) };
+}
+
+RECT* Bullet::getRect()
+{
+	return &m_rect;
 }

@@ -30,8 +30,8 @@ void Player::init()
 	m_pBitMap[DIRECTION::DIR_RIGHT][1] = ResManager::getInst()->getBitMap(FILE_TANK_RIGHT_01);
 	
 	m_dir = DIR_UP;
-	m_position.x = 400;
-	m_position.y = 400;
+	m_position.x = 40 + TILE_START_POINT_X;
+	m_position.y = 440 + TILE_START_POINT_Y;
 	m_bIsMove = false;
 	m_fCurAniamtionIndex = 0.0f;
 	m_speed = 100;
@@ -84,7 +84,7 @@ void Player::update()
 		default:
 			break;
 		}
-
+		m_saveMove = m_fElapseTime * m_speed;
 		m_fCurAniamtionIndex += m_fElapseTime * 15;
 		if (m_fCurAniamtionIndex > 2)
 		{
@@ -127,4 +127,52 @@ void Player::fire()
 		}
 		m_fFireTime = 0.0f;
 	}
+}
+
+RECT* Player::getRect()
+{
+	int margin = 7;
+	m_rectForCollitionCheck = { (int)m_position.x + margin , (int)m_position.y + margin , (int)(m_position.x + TILE_SIZE) - margin, (int)(m_position.y + TILE_SIZE) - margin };
+	return &m_rectForCollitionCheck;
+}
+
+void Player::backPosition()
+{
+	switch (m_dir)
+	{
+	case DIR_UP:
+		m_position.y += m_saveMove;
+		break;
+	case DIR_DOWN:
+		m_position.y -= m_saveMove;
+		break;
+	case DIR_LEFT:
+		m_position.x += m_saveMove;
+		break;
+	case DIR_RIGHT:
+		m_position.x -= m_saveMove;
+		break;
+	default:
+		break;
+	}
+}
+
+bool Player::isBulletActive(int _index)
+{
+	return m_vecBullet[_index]->isActive();
+}
+
+RECT * Player::getRectBullet(int _index)
+{
+	return m_vecBullet[_index]->getRect();;
+}
+
+void Player::unActiveBullet(int _index)
+{
+	m_vecBullet[_index]->unAcitve();
+}
+
+DIRECTION Player::getBulletDirection(int _index)
+{
+	return m_vecBullet[_index]->getDirection();
 }

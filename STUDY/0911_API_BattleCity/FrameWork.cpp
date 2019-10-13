@@ -7,14 +7,6 @@
 
 FrameWork::FrameWork()
 {
-	Player_x = 200.0f;
-	Player_y = 500.0f;
-
-	m_bJump = false;
-
-	m_fVectorX = 1.0f;
-	m_fVectorY = 0.0f;
-
 	m_LastTime = std::chrono::system_clock::now();
 }
 
@@ -24,6 +16,8 @@ FrameWork::~FrameWork()
 
 void FrameWork::Init(HWND hWnd)
 {
+	m_clickedKeyD = false;
+
 	m_hWnd = hWnd;
 	HDC hdc = GetDC(hWnd);
 	ResManager::getInst()->init(GetDC(hWnd));
@@ -81,10 +75,29 @@ void FrameWork::Update()
 	m_fElapseTime = sec.count();
 	m_LastTime = std::chrono::system_clock::now();
 
-	m_pPlayer->update();
 
 	OperateInput();
 
+	m_pPlayer->update();
+
+	//벽이랑 플레이어 충돌 체크
+	if (m_pMapManger->checkColltion(m_pPlayer->getRect()))
+	{
+		m_pPlayer->backPosition();
+	}
+
+	//총알 벽 충돌체크 
+	for (int i = 0; i < 3; i++)
+	{
+		if (m_pPlayer->isBulletActive(i))
+		{
+			if (m_pMapManger->checkCollitionForBullet(m_pPlayer->getRectBullet(i), m_pPlayer->getBulletDirection(i)))
+			{
+				//트루면 맵매니저에서 
+				m_pPlayer->unActiveBullet(i);
+			}
+		}
+	}
 	Render();
 }
 
@@ -93,7 +106,6 @@ void FrameWork::OperateInput()
 	if (GetKeyState(VK_LEFT) & 0x8000)
 		m_pPlayer->isMove(DIR_LEFT);
 	
-		//Player_x -= 500 * m_fElapseTime;
 	if (GetKeyState(VK_RIGHT) & 0x8000)
 		m_pPlayer->isMove(DIR_RIGHT);
 
@@ -108,6 +120,18 @@ void FrameWork::OperateInput()
 	{
 		m_pPlayer->fire();
 	}
+
+	if (GetKeyState('D') & 0x8000)
+	{
+		if (!m_clickedKeyD)
+		{
+			m_pMapManger->changeDebugMode();
+		}
+		m_clickedKeyD = true;
+	}
+	else
+		m_clickedKeyD = false;
+
 }
 
 void FrameWork::Render()

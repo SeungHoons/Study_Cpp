@@ -7,19 +7,19 @@ using namespace std;
 
 enum RES_FILE_NAME
 {
-	FILE_BLCOK00,
+	FILE_BLOCK00,
 	FILE_BLOCK01,
-	FILE_BLCOK02,
+	FILE_BLOCK02,
 	FILE_BLOCK03,
-	FILE_BLCOK04,
+	FILE_BLOCK04,
 	FILE_BLOCK05,
-	FILE_BLCOK06,
+	FILE_BLOCK06,
 	FILE_BLOCK07,
-	FILE_BLCOK08,
+	FILE_BLOCK08,
 	FILE_BLOCK09,
-	FILE_BLCOK10,
+	FILE_BLOCK10,
 	FILE_BLOCK11,
-	FILE_BLCOK12,
+	FILE_BLOCK12,
 	FILE_BLOCK13,
 	FILE_BLOCK14,
 	FILE_E_DOWN_00,
@@ -75,6 +75,10 @@ public:
 	void init(HDC _hdc);
 	BitMap* getBitMap(RES_FILE_NAME fileName);
 	BitMap* getLoadBitMap(int _index);
+	BitMap* getLoadBitMap(int _index , RECT& _rc);
+	RES_FILE_NAME getFileIndex(int _index);
+	void setCollitionBox(int _index, RECT& _rc);
+
 
 	void fileLoad(HWND _hWnd);
 	void fileSave(HWND _hWnd);
