@@ -24,6 +24,7 @@ public:
 	void render(HDC hdc, int x, int y);
 	void render(HDC hdc, int x, int y, float multiply);
 	void render(HDC hdc, int x, int y, int cx, int cy);
+	void render(HDC hdc, int x, int y, int cx, int cy, int left, int top, int right, int bottom);
 	void release();
 
 	SIZE getSize() { return m_size; }

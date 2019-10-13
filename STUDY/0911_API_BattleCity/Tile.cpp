@@ -23,8 +23,30 @@ void Tile::init(BitMap* _bitmap, RECT* _rect)
 
 void Tile::render(HDC _hdc)
 {
-	if (m_pBitmap != nullptr)
-		m_pBitmap->render(_hdc, m_rect.left, m_rect.top, TILE_SIZE, TILE_SIZE);
+	/*if (m_pBitmap != nullptr)
+		m_pBitmap->render(_hdc, m_rect.left, m_rect.top, TILE_SIZE, TILE_SIZE);*/
+	int i = 0; 
+	int j = 0; 
+	int w ;
+	int h ;
+	for (auto iter = m_vecInRect.begin(); iter != m_vecInRect.end(); iter++)
+	{
+		if (m_pBitmap != nullptr)
+		{
+			w = (m_pBitmap->getSize().cx)/2;
+			h = (m_pBitmap->getSize().cy)/2;
+			m_pBitmap->render(_hdc, iter->left, iter->top,
+				(iter->right - iter->left), (iter->bottom - iter->top), i * w, j * h, (i * w) + w, (j * h) + h);
+
+			i++;
+			/*if (i > 1)
+			{
+				i = 0;
+				j++;
+			}*/
+		}
+	}
+
 
 	if (debugMode)
 		renderDebugCollitionBox(_hdc);

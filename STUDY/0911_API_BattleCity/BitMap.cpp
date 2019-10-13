@@ -57,6 +57,11 @@ void BitMap::render(HDC hdc, int x, int y, int cx, int cy)
 	TransparentBlt(hdc, x, y, cx, cy, m_hMemDC, 0, 0, m_size.cx, m_size.cy, RGB(255, 0, 255));
 }
 
+void BitMap::render(HDC hdc, int x, int y, int cx, int cy, int left, int top, int right, int bottom)
+{
+	TransparentBlt(hdc, x, y, cx, cy, m_hMemDC, left, top,  right, bottom, RGB(255, 0, 255));
+}
+
 void BitMap::release()
 {
 	SelectObject(m_hMemDC, m_hOldBitMap);
