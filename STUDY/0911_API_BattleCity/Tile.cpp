@@ -23,8 +23,8 @@ void Tile::init(BitMap* _bitmap, RECT* _rect)
 
 void Tile::render(HDC _hdc)
 {
-	/*if (m_pBitmap != nullptr)
-		m_pBitmap->render(_hdc, m_rect.left, m_rect.top, TILE_SIZE, TILE_SIZE);*/
+	if (m_pBitmap != nullptr)
+		m_pBitmap->render(_hdc, m_rect.left, m_rect.top, TILE_SIZE, TILE_SIZE);
 	int i = 0; 
 	int j = 0; 
 	int w ;

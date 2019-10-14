@@ -61,7 +61,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			{
 			case EN_CHANGE:
 				GetWindowText(hEdit, str, 128);
-				SetWindowText(hWnd, str);
+				//SetWindowText(hWnd, str);
 			}
 		}
 		return 0;

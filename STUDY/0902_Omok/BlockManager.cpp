@@ -99,7 +99,7 @@ void BlockManager::checkCollition(POINT _pt)
 
 void BlockManager::checkFiveStone(int _y, int _x)
 {
-	int count = 1;
+	int count = 0;
 	int x = _x;
 	int y = _y;
 
@@ -108,6 +108,7 @@ void BlockManager::checkFiveStone(int _y, int _x)
 	{
 		x = _x;
 		y = _y;
+		count = 0;
 		int plus_x = (DIRECTION_EIGHT[(LINE_DIR)i].x);
 		int plus_y = (DIRECTION_EIGHT[(LINE_DIR)i].y);
 		while (y>0 && x > 0 && (m_pBlock[y + plus_y][x + plus_x]->whatState() == m_nowPlayer))
